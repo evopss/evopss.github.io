@@ -1,0 +1,1267 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="【数据备份】mysqldump, EvBlog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>【数据备份】mysqldump | EvBlog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="EvBlog" type="application/atom+xml">
+</head>
+
+
+
+   <style>
+    body{
+       background-image: url(/medias/background.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">EvBlog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">EvBlog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '57fdbb0b59eaa6727d09c0ab99e45c128769ff6822003fe68d42bbb575a708f7';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('Please enter the password to access this article')).toString(CryptoJS.enc.Hex)) {
+                alert('password error, will return home page页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">【数据备份】mysqldump</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/mysqldump/">
+                                <span class="chip bg-color">mysqldump</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-11-09
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-12-24
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    14 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="【数据备份】mysqldump"><a href="#【数据备份】mysqldump" class="headerlink" title="【数据备份】mysqldump"></a>【数据备份】mysqldump</h1><h2 id="mysqldump简介"><a href="#mysqldump简介" class="headerlink" title="mysqldump简介"></a>mysqldump简介</h2><p><strong>mysqldump命令</strong> 是mysql数据库中备份工具，用于将MySQL服务器中的数据库以标准的sql语言的方式导出，并保存到文件中。</p>
+<h2 id="mysqldump环境配置"><a href="#mysqldump环境配置" class="headerlink" title="mysqldump环境配置"></a>mysqldump环境配置</h2><ul>
+<li><p>linux</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">## redhat</span>
+yum -y <span class="token function">install</span> mysql-client
+<span class="token comment">## debian</span>
+<span class="token function">apt-get</span> <span class="token function">install</span> mysql-client<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="mysqldump命令行"><a href="#mysqldump命令行" class="headerlink" title="mysqldump命令行"></a>mysqldump命令行</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Dumping structure and contents of MySQL databases and tables.
+Usage: mysqldump <span class="token punctuation">[</span>OPTIONS<span class="token punctuation">]</span> database <span class="token punctuation">[</span>tables<span class="token punctuation">]</span>
+OR     mysqldump <span class="token punctuation">[</span>OPTIONS<span class="token punctuation">]</span> --databases <span class="token punctuation">[</span>OPTIONS<span class="token punctuation">]</span> DB1 <span class="token punctuation">[</span>DB2 DB3<span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+OR     mysqldump <span class="token punctuation">[</span>OPTIONS<span class="token punctuation">]</span> --all-databases <span class="token punctuation">[</span>OPTIONS<span class="token punctuation">]</span>
+
+Default options are <span class="token builtin class-name">read</span> from the following files <span class="token keyword">in</span> the given order:
+/etc/my.cnf /etc/mysql/my.cnf /opt/bitnami/mysql/conf/my.cnf ~/.my.cnf 
+The following <span class="token function">groups</span> are read: mysqldump client
+The following options may be given as the first argument:
+--print-defaults        Print the program argument list and exit.
+--no-defaults           Don<span class="token string">'t read default options from any option file,
+                        except for login file.
+--defaults-file=#       Only read default options from the given file #.
+--defaults-extra-file=# Read this file after the global files are read.
+--defaults-group-suffix=#
+                        Also read groups with concat(group, suffix)
+--login-path=#          Read this path from the login file.
+  -A, --all-databases 导出全部数据库. This will be same as --databases
+                      with all databases selected.
+  -Y, --all-tablespaces 导出所有表空间.
+                      
+  -y, --no-tablespaces 不导出任何表空间信息.
+  
+  --add-drop-database 每个数据库创建之前添加drop数据库语句。
+  
+  --add-drop-table    每个数据表创建之前添加drop数据表语句.
+                      (Defaults to on; use --skip-add-drop-table to disable.)
+                      
+  --add-drop-trigger  Add a DROP TRIGGER before each create.
+  --add-locks         在每个表导出之前增加LOCK TABLES并且之后UNLOCK TABLE。
+                      (Defaults to on; use --skip-add-locks to disable.)
+                      
+  --allow-keywords    允许创建是关键词的列名字。
+  --apply-slave-statements 在'</span>CHANGE MASTER<span class="token string">'前添加'</span>STOP SLAVE<span class="token string">'，并且在导出的最后添加'</span>START SLAVE<span class="token string">'。
+                      
+  --bind-address=name IP address to bind to.
+  --character-sets-dir=name 字符集文件的目录
+                      
+  -i, --comments      附加注释信息.
+                      (Defaults to on; use --skip-comments to disable.)
+                      
+  --compatible=name    导出的数据将和其它数据库或旧版本的MySQL 相兼容。
+  									  值可以为ansi、mysql323、mysql40、postgresql、oracle、mssql、db2、maxdb、no_key_options、no_tables_options、no_field_options等，
+											要使用几个值，用逗号将它们隔开。它并不保证能完全兼容，而是尽量兼容。
+											
+  --compact           导出更少的输出信息(用于调试)。去掉注释和头尾等结构.  Enables
+                      options --skip-add-drop-table --skip-add-locks
+                      --skip-comments --skip-disable-keys --skip-set-charset.
+  -c, --complete-insert 
+                      Use complete insert statements.
+  -C, --compress      Use compression in server/client protocol.
+  -a, --create-options 
+                      Include all MySQL specific create options.
+                      (Defaults to on; use --skip-create-options to disable.)
+  -B, --databases     Dump several databases. Note the difference in usage; in
+                      this case no tables are given. All name arguments are
+                      regarded as database names. '</span>USE db_name<span class="token punctuation">;</span><span class="token string">' will be
+                      included in the output.
+  -#, --debug[=#]     This is a non-debug version. Catch this and exit.
+  --debug-check       This is a non-debug version. Catch this and exit.
+  --debug-info        This is a non-debug version. Catch this and exit.
+  --default-character-set=name 
+                      Set the default character set.
+  --delete-master-logs 
+                      Delete logs on master after backup. This automatically
+                      enables --master-data.
+  -K, --disable-keys  '</span>/*<span class="token operator">!</span><span class="token number">40000</span> ALTER TABLE tb_name DISABLE KEYS */<span class="token punctuation">;</span> and
+                      <span class="token string">'/*!40000 ALTER TABLE tb_name ENABLE KEYS */; will be put
+                      in the output.
+                      (Defaults to on; use --skip-disable-keys to disable.)
+  --dump-slave[=#]    This causes the binary log position and filename of the
+                      master to be appended to the dumped data output. Setting
+                      the value to 1, will printit as a CHANGE MASTER command
+                      in the dumped data output; if equal to 2, that command
+                      will be prefixed with a comment symbol. This option will
+                      turn --lock-all-tables on, unless --single-transaction is
+                      specified too (in which case a global read lock is only
+                      taken a short time at the beginning of the dump - don'</span>t
+                      forget to <span class="token builtin class-name">read</span> about --single-transaction below<span class="token punctuation">)</span>. In all
+                      cases any action on logs will happen at the exact moment
+                      of the dump.Option automatically turns --lock-tables off.
+  -E, --events        Dump events.
+  -e, --extended-insert 
+                      Use multiple-row INSERT syntax that include several
+                      VALUES lists.
+                      <span class="token punctuation">(</span>Defaults to on<span class="token punctuation">;</span> use --skip-extended-insert to disable.<span class="token punctuation">)</span>
+  --fields-terminated-by<span class="token operator">=</span>name 
+                      Fields <span class="token keyword">in</span> the output <span class="token function">file</span> are terminated by the given
+                      string.
+  --fields-enclosed-by<span class="token operator">=</span>name 
+                      Fields <span class="token keyword">in</span> the output <span class="token function">file</span> are enclosed by the given
+                      character.
+  --fields-optionally-enclosed-by<span class="token operator">=</span>name 
+                      Fields <span class="token keyword">in</span> the output <span class="token function">file</span> are optionally enclosed by the
+                      given character.
+  --fields-escaped-by<span class="token operator">=</span>name 
+                      Fields <span class="token keyword">in</span> the output <span class="token function">file</span> are escaped by the given
+                      character.
+  -F, --flush-logs    Flush logs <span class="token function">file</span> <span class="token keyword">in</span> server before starting dump. Note that
+                      <span class="token keyword">if</span> you dump many databases at once <span class="token punctuation">(</span>using the option
+                      --databases<span class="token operator">=</span> or --all-databases<span class="token punctuation">)</span>, the logs will be
+                      flushed <span class="token keyword">for</span> each database dumped. The exception is when
+                      using --lock-all-tables or --master-data: <span class="token keyword">in</span> this <span class="token keyword">case</span>
+                      the logs will be flushed only once, corresponding to the
+                      moment all tables are locked. So <span class="token keyword">if</span> you want your dump
+                      and the log flush to happen at the same exact moment you
+                      should use --lock-all-tables or --master-data with
+                      --flush-logs.
+  --flush-privileges  Emit a FLUSH PRIVILEGES statement after dumping the mysql
+                      database.  This option should be used any <span class="token function">time</span> the dump
+                      contains the mysql database and any other database that
+                      depends on the data <span class="token keyword">in</span> the mysql database <span class="token keyword">for</span> proper
+                      restore. 
+  -f, --force         Continue even <span class="token keyword">if</span> we get an SQL error.
+  -?, --help          Display this <span class="token builtin class-name">help</span> message and exit.
+  --hex-blob          Dump binary strings <span class="token punctuation">(</span>BINARY, VARBINARY, BLOB<span class="token punctuation">)</span> <span class="token keyword">in</span>
+                      hexadecimal format.
+  -h, --host<span class="token operator">=</span>name     Connect to host.
+  --ignore-error<span class="token operator">=</span>name A comma-separated list of error numbers to be ignored <span class="token keyword">if</span>
+                      encountered during dump.
+  --ignore-table<span class="token operator">=</span>name Do not dump the specified table. To specify <span class="token function">more</span> than one
+                      table to ignore, use the directive multiple times, once
+                      <span class="token keyword">for</span> each table.  Each table must be specified with both
+                      database and table names, e.g.,
+                      --ignore-table<span class="token operator">=</span>database.table.
+  --include-master-host-port 
+                      Adds <span class="token string">'MASTER_HOST=&lt;host&gt;, MASTER_PORT=&lt;port&gt;'</span> to <span class="token string">'CHANGE
+                      MASTER TO..'</span> <span class="token keyword">in</span> dump produced with --dump-slave.
+  --insert-ignore     Insert rows with INSERT IGNORE.
+  --lines-terminated-by<span class="token operator">=</span>name 
+                      Lines <span class="token keyword">in</span> the output <span class="token function">file</span> are terminated by the given
+                      string.
+  -x, --lock-all-tables 
+                      Locks all tables across all databases. This is achieved
+                      by taking a global <span class="token builtin class-name">read</span> lock <span class="token keyword">for</span> the duration of the
+                      whole dump. Automatically turns --single-transaction and
+                      --lock-tables off.
+  -l, --lock-tables   Lock all tables <span class="token keyword">for</span> read.
+                      <span class="token punctuation">(</span>Defaults to on<span class="token punctuation">;</span> use --skip-lock-tables to disable.<span class="token punctuation">)</span>
+  --log-error<span class="token operator">=</span>name    Append warnings and errors to given file.
+  --master-data<span class="token punctuation">[</span><span class="token operator">=</span><span class="token comment">#]   This causes the binary log position and filename to be</span>
+                      appended to the output. If equal to <span class="token number">1</span>, will print it as a
+                      CHANGE MASTER <span class="token builtin class-name">command</span><span class="token punctuation">;</span> <span class="token keyword">if</span> equal to <span class="token number">2</span>, that <span class="token builtin class-name">command</span> will
+                      be prefixed with a comment symbol. This option will turn
+                      --lock-all-tables on, unless --single-transaction is
+                      specified too <span class="token punctuation">(</span>in <span class="token function">which</span> <span class="token keyword">case</span> a global <span class="token builtin class-name">read</span> lock is only
+                      taken a short <span class="token function">time</span> at the beginning of the dump<span class="token punctuation">;</span> don<span class="token string">'t
+                      forget to read about --single-transaction below). In all
+                      cases, any action on logs will happen at the exact moment
+                      of the dump. Option automatically turns --lock-tables
+                      off.
+  --max-allowed-packet=# 
+                      The maximum packet length to send to or receive from
+                      server.
+  --net-buffer-length=# 
+                      The buffer size for TCP/IP and socket communication.
+  --no-autocommit     Wrap tables with autocommit/commit statements.
+  -n, --no-create-db  Suppress the CREATE DATABASE ... IF EXISTS statement that
+                      normally is output for each dumped database if
+                      --all-databases or --databases is given.
+  -t, --no-create-info 
+                      Don'</span>t <span class="token function">write</span> table creation info.
+  -d, --no-data       No row information.
+  -N, --no-set-names  Same as --skip-set-charset.
+  --opt               Same as --add-drop-table, --add-locks, --create-options,
+                      --quick, --extended-insert, --lock-tables, --set-charset,
+                      and --disable-keys. Enabled by default, disable with
+                      --skip-opt.
+  --order-by-primary  Sorts each table<span class="token string">'s rows by primary key, or first unique
+                      key, if such a key exists.  Useful when dumping a MyISAM
+                      table to be loaded into an InnoDB table, but will make
+                      the dump itself take considerably longer.
+  -p, --password[=name] 
+                      Password to use when connecting to server. If password is
+                      not given it'</span>s solicited on the tty.
+  -P, --port<span class="token operator">=</span><span class="token comment">#        Port number to use for connection.</span>
+  --protocol<span class="token operator">=</span>name     The protocol to use <span class="token keyword">for</span> connection <span class="token punctuation">(</span>tcp, socket, pipe,
+                      memory<span class="token punctuation">)</span>.
+  -q, --quick         Don<span class="token string">'t buffer query, dump directly to stdout.
+                      (Defaults to on; use --skip-quick to disable.)
+  -Q, --quote-names   Quote table and column names with backticks (`).
+                      (Defaults to on; use --skip-quote-names to disable.)
+  --replace           Use REPLACE INTO instead of INSERT INTO.
+  -r, --result-file=name 
+                      Direct output to a given file. This option should be used
+                      in systems (e.g., DOS, Windows) that use carriage-return
+                      linefeed pairs (\r\n) to separate text lines. This option
+                      ensures that only a single newline is used.
+  -R, --routines      Dump stored routines (functions and procedures).
+  --set-charset       Add '</span>SET NAMES default_character_set<span class="token string">' to the output.
+                      (Defaults to on; use --skip-set-charset to disable.)
+  --set-gtid-purged[=name] 
+                      Add '</span>SET @@GLOBAL.GTID_PURGED<span class="token string">' to the output. Possible
+                      values for this option are ON, OFF and AUTO. If ON is
+                      used and GTIDs are not enabled on the server, an error is
+                      generated. If OFF is used, this option does nothing. If
+                      AUTO is used and GTIDs are enabled on the server, '</span>SET
+                      @@GLOBAL.GTID_PURGED<span class="token string">' is added to the output. If GTIDs
+                      are disabled, AUTO does nothing. If no value is supplied
+                      then the default (AUTO) value will be considered.
+  --single-transaction 
+                      Creates a consistent snapshot by dumping all tables in a
+                      single transaction. Works ONLY for tables stored in
+                      storage engines which support multiversioning (currently
+                      only InnoDB does); the dump is NOT guaranteed to be
+                      consistent for other storage engines. While a
+                      --single-transaction dump is in process, to ensure a
+                      valid dump file (correct table contents and binary log
+                      position), no other connection should use the following
+                      statements: ALTER TABLE, DROP TABLE, RENAME TABLE,
+                      TRUNCATE TABLE, as consistent snapshot is not isolated
+                      from them. Option automatically turns off --lock-tables.
+  --dump-date         Put a dump date to the end of the output.
+                      (Defaults to on; use --skip-dump-date to disable.)
+  --skip-opt          Disable --opt. Disables --add-drop-table, --add-locks,
+                      --create-options, --quick, --extended-insert,
+                      --lock-tables, --set-charset, and --disable-keys.
+  -S, --socket=name   The socket file to use for connection.
+  --secure-auth       Refuse client connecting to server if it uses old
+                      (pre-4.1.1) protocol. Deprecated. Always TRUE
+  --ssl-mode=name     SSL connection mode.
+  --ssl               Deprecated. Use --ssl-mode instead.
+                      (Defaults to on; use --skip-ssl to disable.)
+  --ssl-verify-server-cert 
+                      Deprecated. Use --ssl-mode=VERIFY_IDENTITY instead.
+  --ssl-ca=name       CA file in PEM format.
+  --ssl-capath=name   CA directory.
+  --ssl-cert=name     X509 cert in PEM format.
+  --ssl-cipher=name   SSL cipher to use.
+  --ssl-key=name      X509 key in PEM format.
+  --ssl-crl=name      Certificate revocation list.
+  --ssl-crlpath=name  Certificate revocation list path.
+  --tls-version=name  TLS version to use, permitted values are: TLSv1, TLSv1.1,
+                      TLSv1.2
+  --server-public-key-path=name 
+                      File path to the server public RSA key in PEM format.
+  --get-server-public-key 
+                      Get server public key
+  -T, --tab=name      Create tab-separated textfile for each table to given
+                      path. (Create .sql and .txt files.) NOTE: This only works
+                      if mysqldump is run on the same machine as the mysqld
+                      server.
+  --tables            Overrides option --databases (-B).
+  --triggers          Dump triggers for each dumped table.
+                      (Defaults to on; use --skip-triggers to disable.)
+  --tz-utc            SET TIME_ZONE='</span>+00:00' at <span class="token function">top</span> of dump to allow dumping of
+                      TIMESTAMP data when a server has data <span class="token keyword">in</span> different <span class="token function">time</span>
+                      zones or data is being moved between servers with
+                      different <span class="token function">time</span> zones.
+                      <span class="token punctuation">(</span>Defaults to on<span class="token punctuation">;</span> use --skip-tz-utc to disable.<span class="token punctuation">)</span>
+  -u, --user<span class="token operator">=</span>name     User <span class="token keyword">for</span> login <span class="token keyword">if</span> not current user.
+  -v, --verbose       Print info about the various stages.
+  -V, --version       Output version information and exit.
+  -w, --where<span class="token operator">=</span>name    Dump only selected records. Quotes are mandatory.
+  -X, --xml           Dump a database as well formed XML.
+  --plugin-dir<span class="token operator">=</span>name   Directory <span class="token keyword">for</span> client-side plugins.
+  --default-auth<span class="token operator">=</span>name Default authentication client-side plugin to use.
+  --enable-cleartext-plugin 
+                      Enable/disable the <span class="token function">clear</span> text authentication plugin.
+
+Variables <span class="token punctuation">(</span>--variable-name<span class="token operator">=</span>value<span class="token punctuation">)</span>
+and boolean options <span class="token punctuation">{</span>FALSE<span class="token operator">|</span>TRUE<span class="token punctuation">}</span>  Value <span class="token punctuation">(</span>after reading options<span class="token punctuation">)</span>
+--------------------------------- ----------------------------------------
+all-databases                     FALSE
+all-tablespaces                   FALSE
+no-tablespaces                    FALSE
+add-drop-database                 FALSE
+add-drop-table                    TRUE
+add-drop-trigger                  FALSE
+add-locks                         TRUE
+allow-keywords                    FALSE
+apply-slave-statements            FALSE
+bind-address                      <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+character-sets-dir                <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+comments                          TRUE
+compatible                        <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+compact                           FALSE
+complete-insert                   FALSE
+compress                          FALSE
+create-options                    TRUE
+databases                         FALSE
+default-character-set             UTF8
+delete-master-logs                FALSE
+disable-keys                      TRUE
+dump-slave                        <span class="token number">0</span>
+events                            FALSE
+extended-insert                   TRUE
+fields-terminated-by              <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+fields-enclosed-by                <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+fields-optionally-enclosed-by     <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+fields-escaped-by                 <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+flush-logs                        FALSE
+flush-privileges                  FALSE
+force                             FALSE
+hex-blob                          FALSE
+<span class="token function">host</span>                              <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+ignore-error                      <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+include-master-host-port          FALSE
+insert-ignore                     FALSE
+lines-terminated-by               <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+lock-all-tables                   FALSE
+lock-tables                       TRUE
+log-error                         <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+master-data                       <span class="token number">0</span>
+max-allowed-packet                <span class="token number">25165824</span>
+net-buffer-length                 <span class="token number">1046528</span>
+no-autocommit                     FALSE
+no-create-db                      FALSE
+no-create-info                    FALSE
+no-data                           FALSE
+order-by-primary                  FALSE
+port                              <span class="token number">3306</span>
+quick                             TRUE
+quote-names                       TRUE
+replace                           FALSE
+routines                          FALSE
+set-charset                       TRUE
+single-transaction                FALSE
+dump-date                         TRUE
+socket                            /opt/bitnami/mysql/tmp/mysql.sock
+secure-auth                       TRUE
+ssl                               TRUE
+ssl-verify-server-cert            FALSE
+ssl-ca                            <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+ssl-capath                        <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+ssl-cert                          <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+ssl-cipher                        <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+ssl-key                           <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+ssl-crl                           <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+ssl-crlpath                       <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+tls-version                       <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+server-public-key-path            <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+get-server-public-key             FALSE
+tab                               <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+triggers                          TRUE
+tz-utc                            TRUE
+user                              <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+verbose                           FALSE
+where                             <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+plugin-dir                        /opt/bitnami/mysql/plugin
+default-auth                      <span class="token punctuation">(</span>No default value<span class="token punctuation">)</span>
+enable-cleartext-plugin           FALSE<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">ender viggin</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://blog.evcoder.com/2021/11/09/database/mysql/shu-ju-bei-fen-mysqldump/">https://blog.evcoder.com/2021/11/09/database/mysql/shu-ju-bei-fen-mysqldump/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">ender viggin</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/mysqldump/">
+                                    <span class="chip bg-color">mysqldump</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/11/15/kubernetes/kubernetes-cronjob/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="【Kubernetes】CronJob">
+                        
+                        <span class="card-title">【Kubernetes】CronJob</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            【Kubernetes】CronJob
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            ender viggin
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/11/04/git/git-gitflow/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="【Git】GitFlow">
+                        
+                        <span class="card-title">【Git】GitFlow</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            【Git】GitFlow
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            ender viggin
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">126k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

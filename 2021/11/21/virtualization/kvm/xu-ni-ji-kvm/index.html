@@ -1,0 +1,1514 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="【虚拟机】KVM, EvBlog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>【虚拟机】KVM | EvBlog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="EvBlog" type="application/atom+xml">
+</head>
+
+
+
+   <style>
+    body{
+       background-image: url(/medias/background.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">EvBlog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">EvBlog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '57fdbb0b59eaa6727d09c0ab99e45c128769ff6822003fe68d42bbb575a708f7';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('Please enter the password to access this article')).toString(CryptoJS.enc.Hex)) {
+                alert('password error, will return home page页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">【虚拟机】KVM</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-11-21
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-12-24
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    23 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="【虚拟机】KVM"><a href="#【虚拟机】KVM" class="headerlink" title="【虚拟机】KVM"></a>【虚拟机】KVM</h1><blockquote>
+<p> kvm官网： <a target="_blank" rel="noopener" href="http://www.linux-kvm.org/">http://www.linux-kvm.org/</a> </p>
+</blockquote>
+<h2 id="kvm简介"><a href="#kvm简介" class="headerlink" title="kvm简介"></a>kvm简介</h2><h3 id="kvm虚拟化架构"><a href="#kvm虚拟化架构" class="headerlink" title="kvm虚拟化架构"></a>kvm虚拟化架构</h3><p><strong>kvm虚拟化相关的程序包</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">程序包</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">qemu-kvm</td>
+<td align="center">主要的KVM程序包</td>
+</tr>
+<tr>
+<td align="center">libvirt</td>
+<td align="center">用于管理超级监视程序的libvirtd服务</td>
+</tr>
+<tr>
+<td align="center">libvirt-client</td>
+<td align="center">用于管理虚拟机的virsh命令和客户端API</td>
+</tr>
+<tr>
+<td align="center">virt-install</td>
+<td align="center">创建虚拟机需要的命令行工具</td>
+</tr>
+<tr>
+<td align="center">virt-manager</td>
+<td align="center">GUI虚拟机管理工具（图形界面）</td>
+</tr>
+<tr>
+<td align="center">virt-top</td>
+<td align="center">虚拟机统计命令</td>
+</tr>
+<tr>
+<td align="center">virt-viewer</td>
+<td align="center">用于连接到虚拟机的图形控制台</td>
+</tr>
+</tbody></table>
+<h2 id="kvm环境配置"><a href="#kvm环境配置" class="headerlink" title="kvm环境配置"></a>kvm环境配置</h2><ul>
+<li><p>centos</p>
+<ul>
+<li><p>KVM 是基于 x86 虚拟化扩展(Intel VT 或者 AMD-V) 技术的虚拟机软件，所以查看 CPU 是否支持 VT 技术，就可以判断是否支持KVM。有返回结果，如果结果中有vmx（Intel）或svm(AMD)字样，就说明CPU的支持的。</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">egrep</span> <span class="token string">'(vmx|svm)'</span> --color<span class="token operator">=</span>always /proc/cpuinfo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><p>关闭SELinux,防火墙</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">systemctl stop firewall <span class="token operator">&amp;&amp;</span> systemctl disbale firewalld
+systemctl stop NetworkManager <span class="token operator">&amp;&amp;</span> systemctl disbale NetworkManager
+setenforce <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token function">sed</span> -i <span class="token string">'s/SELINUX=.*/SELINUX=permissive/g'</span> /etc/selinux/config<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li><p>安装kvm</p>
+<p>kvm相关安装包及其作用:</p>
+<ul>
+<li><code>qemu-kvm</code> 主要的KVM程序包</li>
+<li><code>python-virtinst</code> 创建虚拟机所需要的命令行工具和程序库</li>
+<li><code>virt-manager</code> GUI虚拟机管理工具</li>
+<li><code>virt-top</code> 虚拟机统计命令</li>
+<li><code>virt-viewer</code> GUI连接程序，连接到已配置好的虚拟机</li>
+<li><code>libvirt</code> C语言工具包，提供libvirt服务</li>
+<li><code>libvirt-client</code> 为虚拟客户机提供的C语言工具包</li>
+<li><code>virt-install</code> 基于libvirt服务的虚拟机创建命令</li>
+<li><code>bridge-utils</code> 创建和管理桥接设备的工具</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">yum -y <span class="token function">install</span> qemu-kvm libvirt virt-install bridge-utils
+
+<span class="token comment"># 安装完成后重启机器以便加载kvm模块</span>
+<span class="token function">reboot</span>
+<span class="token comment"># 查看KVM模块是否被正确加载</span>
+lsmod <span class="token operator">|</span> <span class="token function">grep</span> kvm
+kvm_intel             <span class="token number">183621</span>  <span class="token number">90</span> 
+kvm                   <span class="token number">586948</span>  <span class="token number">1</span> kvm_intel
+
+<span class="token comment"># 启动kvm服务</span>
+systemctl start libvirtd
+systemctl <span class="token builtin class-name">enable</span> libvirtd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+<li><p>ubuntu</p>
+<pre class="line-numbers language-none"><code class="language-none">  ```
+
+## kvm命令行
+
+### virt-install
+
+```shell
+usage: virt-install --name NAME --memory MB STORAGE INSTALL [options]
+
+Create a new virtual machine from specified install media.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --connect URI         Connect to hypervisor with libvirt URI
+
+General Options:
+  -n NAME, --name NAME  虚拟机实例的名称（唯一）
+  --memory MEMORY       配置虚拟机内存分配. Ex:
+                        --memory 1024 (in MiB)
+                        --memory 512,maxmemory=1024
+                        --memory 512,maxmemory=1024,hotplugmemorymax=2048,hotplugmemoryslots=2
+  --vcpus VCPUS         配置虚拟机虚拟CPU核心数量. Ex:
+                        --vcpus 5
+                        --vcpus 5,maxvcpus=10,cpuset=1-4,6,8
+                        --vcpus sockets=2,cores=4,threads=2
+  --cpu CPU             CPU model and features. Ex:
+                        --cpu coreduo,+x2apic
+                        --cpu host-passthrough
+                        --cpu host
+  --metadata METADATA   配置虚拟机元数据. Ex:
+                        --metadata name=foo,title="My pretty title",uuid=...
+                        --metadata description="My nice long description"
+
+Installation Method Options:
+  --cdrom CDROM         CD-ROM安装媒介
+  -l LOCATION, --location LOCATION
+                        Installation source (eg, nfs:host:/path,
+                        http://host/path, ftp://host/path)
+  --pxe                 Boot from the network using the PXE protocol
+  --import              Build guest around an existing disk image
+  --livecd              Treat the CD-ROM media as a Live CD
+  -x EXTRA_ARGS, --extra-args EXTRA_ARGS 传递到从--location启动的安装内核的其他参数
+
+  --initrd-inject INITRD_INJECT 从--location中添加给initrd的启动文件
+  
+  --os-variant DISTRO_VARIANT 正在安装的OS变体 e.g.
+                        'fedora18', 'rhel6', 'winxp', etc.
+  --boot BOOT           Configure guest boot settings. Ex:
+                        --boot hd,cdrom,menu=on
+                        --boot init=/sbin/init (for containers)
+  --idmap IDMAP         Enable user namespace for LXC container. Ex:
+                        --idmap uid_start=0,uid_target=1000,uid_count=10
+
+Device Options:
+  --disk DISK           使用各种选项指定存储. Ex.
+                        --disk size=10 (new 10GiB image in default location)
+                        --disk /my/existing/disk,cache=none
+                        --disk device=cdrom,bus=scsi
+                        --disk=?
+  -w NETWORK, --network NETWORK
+                        Configure a guest network interface. Ex:
+                        --network bridge=mybr0
+                        --network network=my_libvirt_virtual_net
+                        --network network=mynet,model=virtio,mac=00:11...
+                        --network none
+                        --network help
+  --graphics GRAPHICS   Configure guest display settings. Ex:
+                        --graphics vnc
+                        --graphics spice,port=5901,tlsport=5902
+                        --graphics none
+                        --graphics vnc,password=foobar,port=5910,keymap=ja
+  --controller CONTROLLER
+                        Configure a guest controller device. Ex:
+                        --controller type=usb,model=ich9-ehci1
+  --input INPUT         Configure a guest input device. Ex:
+                        --input tablet
+                        --input keyboard,bus=usb
+  --serial SERIAL       Configure a guest serial device
+  --parallel PARALLEL   Configure a guest parallel device
+  --channel CHANNEL     Configure a guest communication channel
+  --console CONSOLE     Configure a text console connection between the guest
+                        and host
+  --hostdev HOSTDEV     Configure physical USB/PCI/etc host devices to be
+                        shared with the guest
+  --filesystem FILESYSTEM
+                        Pass host directory to the guest. Ex: 
+                        --filesystem /my/source/dir,/dir/in/guest
+                        --filesystem template_name,/,type=template
+  --sound [SOUND]       Configure guest sound device emulation
+  --watchdog WATCHDOG   Configure a guest watchdog device
+  --video VIDEO         Configure guest video hardware.
+  --smartcard SMARTCARD
+                        Configure a guest smartcard device. Ex:
+                        --smartcard mode=passthrough
+  --redirdev REDIRDEV   Configure a guest redirection device. Ex:
+                        --redirdev usb,type=tcp,server=192.168.1.1:4000
+  --memballoon MEMBALLOON
+                        Configure a guest memballoon device. Ex:
+                        --memballoon model=virtio
+  --tpm TPM             Configure a guest TPM device. Ex:
+                        --tpm /dev/tpm
+  --rng RNG             Configure a guest RNG device. Ex:
+                        --rng /dev/urandom
+  --panic PANIC         Configure a guest panic device. Ex:
+                        --panic default
+  --memdev MEMDEV       Configure a guest memory device. Ex:
+                        --memdev dimm,target_size=1024
+
+Guest Configuration Options:
+  --security SECURITY   Set domain security driver configuration.
+  --cputune CPUTUNE     Tune CPU parameters for the domain process.
+  --numatune NUMATUNE   Tune NUMA policy for the domain process.
+  --memtune MEMTUNE     Tune memory policy for the domain process.
+  --blkiotune BLKIOTUNE
+                        Tune blkio policy for the domain process.
+  --memorybacking MEMORYBACKING
+                        Set memory backing policy for the domain process. Ex:
+                        --memorybacking hugepages=on
+  --features FEATURES   Set domain &lt;features&gt; XML. Ex:
+                        --features acpi=off
+                        --features apic=on,eoi=on
+  --clock CLOCK         Set domain &lt;clock&gt; XML. Ex:
+                        --clock offset=localtime,rtc_tickpolicy=catchup
+  --pm PM               Configure VM power management features
+  --events EVENTS       Configure VM lifecycle management policy
+  --resource RESOURCE   Configure VM resource partitioning (cgroups)
+  --sysinfo SYSINFO     Configure SMBIOS System Information. Ex:
+                        --sysinfo emulate
+                        --sysinfo host
+                        --sysinfo bios_vendor=Vendor_Inc.,bios_version=1.2.3-abc,...
+                        --sysinfo system_manufacturer=System_Corp.,system_product=Computer,...
+                        --sysinfo baseBoard_manufacturer=Baseboard_Corp.,baseBoard_product=Motherboard,...
+  --qemu-commandline QEMU_COMMANDLINE
+                        Pass arguments directly to the qemu emulator. Ex:
+                        --qemu-commandline='-display gtk,gl=on'
+                        --qemu-commandline env=DISPLAY=:0.1
+
+Virtualization Platform Options:
+  -v, --hvm             This guest should be a fully virtualized guest
+  -p, --paravirt        This guest should be a paravirtualized guest
+  --container           This guest should be a container guest
+  --virt-type HV_TYPE   Hypervisor name to use (kvm, qemu, xen, ...)
+  --arch ARCH           The CPU architecture to simulate
+  --machine MACHINE     The machine type to emulate
+
+Miscellaneous Options:
+  --autostart           Have domain autostart on host boot up.
+  --transient           Create a transient domain.
+  --wait WAIT           Minutes to wait for install to complete.
+  --noautoconsole       Don't automatically try to connect to the guest
+                        console
+  --noreboot            Don't boot guest after completing install.
+  --print-xml [XMLONLY]
+                        Print the generated domain XML rather than create the
+                        guest.
+  --dry-run             Run through install process, but do not create devices
+                        or define the guest.
+  --check CHECK         Enable or disable validation checks. Example:
+                        --check path_in_use=off
+                        --check all=off
+  -q, --quiet           Suppress non-error output
+  -d, --debug           Print debugging information<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h3 id="virtsh"><a href="#virtsh" class="headerlink" title="virtsh"></a>virtsh</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">virsh</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span><span class="token punctuation">..</span>. <span class="token punctuation">[</span><span class="token operator">&lt;</span>command_string<span class="token operator">&gt;</span><span class="token punctuation">]</span>
+<span class="token function">virsh</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span><span class="token punctuation">..</span>. <span class="token operator">&lt;</span>command<span class="token operator">&gt;</span> <span class="token punctuation">[</span>args<span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+
+  options:
+    -c <span class="token operator">|</span> --connect<span class="token operator">=</span>URI      hypervisor connection URI
+    -d <span class="token operator">|</span> --debug<span class="token operator">=</span>NUM        debug level <span class="token punctuation">[</span><span class="token number">0</span>-4<span class="token punctuation">]</span>
+    -e <span class="token operator">|</span> --escape <span class="token operator">&lt;</span>char<span class="token operator">&gt;</span>    <span class="token builtin class-name">set</span> escape sequence <span class="token keyword">for</span> console
+    -h <span class="token operator">|</span> --help             this <span class="token builtin class-name">help</span>
+    -k <span class="token operator">|</span> --keepalive-interval<span class="token operator">=</span>NUM
+                            keepalive interval <span class="token keyword">in</span> seconds, <span class="token number">0</span> <span class="token keyword">for</span> disable
+    -K <span class="token operator">|</span> --keepalive-count<span class="token operator">=</span>NUM
+                            number of possible missed keepalive messages
+    -l <span class="token operator">|</span> --log<span class="token operator">=</span>FILE         output logging to <span class="token function">file</span>
+    -q <span class="token operator">|</span> --quiet            quiet mode
+    -r <span class="token operator">|</span> --readonly         connect <span class="token builtin class-name">readonly</span>
+    -t <span class="token operator">|</span> --timing           print timing information
+    -v                      short version
+    -V                      long version
+         --version<span class="token punctuation">[</span><span class="token operator">=</span>TYPE<span class="token punctuation">]</span>   version, TYPE is short or long <span class="token punctuation">(</span>default short<span class="token punctuation">)</span>
+  commands <span class="token punctuation">(</span>non interactive mode<span class="token punctuation">)</span>:
+
+ Domain Management <span class="token punctuation">(</span>help keyword <span class="token string">'domain'</span><span class="token punctuation">)</span>
+    attach-device                  attach device from an XML <span class="token function">file</span>
+    attach-disk                    attach disk device
+    attach-interface               attach network interface
+    autostart                      autostart a domain
+    blkdeviotune                   Set or query a block device I/O tuning parameters.
+    blkiotune                      Get or <span class="token builtin class-name">set</span> blkio parameters
+    blockcommit                    Start a block commit operation.
+    blockcopy                      Start a block copy operation.
+    blockjob                       Manage active block operations
+    blockpull                      Populate a disk from its backing image.
+    blockresize                    Resize block device of domain.
+    change-media                   Change media of CD or floppy drive
+    console                        connect to the guest console
+    cpu-stats                      show domain cpu statistics
+    create                         create a domain from an XML <span class="token function">file</span>
+    define                         define <span class="token punctuation">(</span>but don<span class="token string">'t start) a domain from an XML file
+    desc                           show or set domain'</span>s description or title
+    destroy                        destroy <span class="token punctuation">(</span>stop<span class="token punctuation">)</span> a domain
+    detach-device                  detach device from an XML <span class="token function">file</span>
+    detach-device-alias            detach device from an <span class="token builtin class-name">alias</span>
+    detach-disk                    detach disk device
+    detach-interface               detach network interface
+    domdisplay                     domain display connection URI
+    domfsfreeze                    Freeze domain<span class="token string">'s mounted filesystems.
+    domfsthaw                      Thaw domain'</span>s mounted filesystems.
+    domfsinfo                      Get information of domain<span class="token string">'s mounted filesystems.
+    domfstrim                      Invoke fstrim on domain'</span>s mounted filesystems.
+    domhostname                    print the domain<span class="token string">'s hostname
+    domid                          convert a domain name or UUID to domain id
+    domif-setlink                  set link state of a virtual interface
+    domiftune                      get/set parameters of a virtual interface
+    domjobabort                    abort active domain job
+    domjobinfo                     domain job information
+    domname                        convert a domain id or UUID to domain name
+    domrename                      rename a domain
+    dompmsuspend                   suspend a domain gracefully using power management functions
+    dompmwakeup                    wakeup a domain from pmsuspended state
+    domuuid                        convert a domain name or id to domain UUID
+    domxml-from-native             Convert native config to domain XML
+    domxml-to-native               Convert domain XML to native config
+    dump                           dump the core of a domain to a file for analysis
+    dumpxml                        domain information in XML
+    edit                           edit XML configuration for a domain
+    event                          Domain Events
+    inject-nmi                     Inject NMI to the guest
+    iothreadinfo                   view domain IOThreads
+    iothreadpin                    control domain IOThread affinity
+    iothreadadd                    add an IOThread to the guest domain
+    iothreaddel                    delete an IOThread from the guest domain
+    send-key                       Send keycodes to the guest
+    send-process-signal            Send signals to processes
+    lxc-enter-namespace            LXC Guest Enter Namespace
+    managedsave                    managed save of a domain state
+    managedsave-remove             Remove managed save of a domain
+    managedsave-edit               edit XML for a domain'</span>s managed save state <span class="token function">file</span>
+    managedsave-dumpxml            Domain information of managed save state <span class="token function">file</span> <span class="token keyword">in</span> XML
+    managedsave-define             redefine the XML <span class="token keyword">for</span> a domain<span class="token string">'s managed save state file
+    memtune                        Get or set memory parameters
+    perf                           Get or set perf event
+    metadata                       show or set domain'</span>s custom XML metadata
+    migrate                        migrate domain to another <span class="token function">host</span>
+    migrate-setmaxdowntime         <span class="token builtin class-name">set</span> maximum tolerable downtime
+    migrate-getmaxdowntime         get maximum tolerable downtime
+    migrate-compcache              get/set compression cache size
+    migrate-setspeed               Set the maximum migration bandwidth
+    migrate-getspeed               Get the maximum migration bandwidth
+    migrate-postcopy               Switch running migration from pre-copy to post-copy
+    numatune                       Get or <span class="token builtin class-name">set</span> numa parameters
+    qemu-attach                    QEMU Attach
+    qemu-monitor-command           QEMU Monitor Command
+    qemu-monitor-event             QEMU Monitor Events
+    qemu-agent-command             QEMU Guest Agent Command
+    <span class="token function">reboot</span>                         <span class="token function">reboot</span> a domain
+    reset                          reset a domain
+    restore                        restore a domain from a saved state <span class="token keyword">in</span> a <span class="token function">file</span>
+    resume                         resume a domain
+    save                           save a domain state to a <span class="token function">file</span>
+    save-image-define              redefine the XML <span class="token keyword">for</span> a domain<span class="token string">'s saved state file
+    save-image-dumpxml             saved state domain information in XML
+    save-image-edit                edit XML for a domain'</span>s saved state <span class="token function">file</span>
+    schedinfo                      show/set scheduler parameters
+    screenshot                     take a screenshot of a current domain console and store it into a <span class="token function">file</span>
+    set-lifecycle-action           change lifecycle actions
+    set-user-password              <span class="token builtin class-name">set</span> the user password inside the domain
+    setmaxmem                      change maximum memory limit
+    setmem                         change memory allocation
+    setvcpus                       change number of virtual CPUs
+    <span class="token function">shutdown</span>                       gracefully <span class="token function">shutdown</span> a domain
+    start                          start a <span class="token punctuation">(</span>previously defined<span class="token punctuation">)</span> inactive domain
+    <span class="token function">suspend</span>                        <span class="token function">suspend</span> a domain
+    ttyconsole                     <span class="token function">tty</span> console
+    undefine                       undefine a domain
+    update-device                  update device from an XML <span class="token function">file</span>
+    vcpucount                      domain vcpu counts
+    vcpuinfo                       detailed domain vcpu information
+    vcpupin                        control or query domain vcpu affinity
+    emulatorpin                    control or query domain emulator affinity
+    vncdisplay                     vnc display
+    guestvcpus                     query or modify state of vcpu <span class="token keyword">in</span> the guest <span class="token punctuation">(</span>via agent<span class="token punctuation">)</span>
+    setvcpu                        attach/detach vcpu or <span class="token function">groups</span> of threads
+    domblkthreshold                <span class="token builtin class-name">set</span> the threshold <span class="token keyword">for</span> block-threshold event <span class="token keyword">for</span> a given block device or it<span class="token string">'s backing chain element
+
+ Domain Monitoring (help keyword '</span>monitor<span class="token string">')
+    domblkerror                    Show errors on block devices
+    domblkinfo                     domain block device size information
+    domblklist                     list all domain blocks
+    domblkstat                     get device block stats for a domain
+    domcontrol                     domain control interface state
+    domif-getlink                  get link state of a virtual interface
+    domifaddr                      Get network interfaces'</span> addresses <span class="token keyword">for</span> a running domain
+    domiflist                      list all domain virtual interfaces
+    domifstat                      get network interface stats <span class="token keyword">for</span> a domain
+    dominfo                        domain information
+    dommemstat                     get memory statistics <span class="token keyword">for</span> a domain
+    domstate                       domain state
+    domstats                       get statistics about one or multiple domains
+    domtime                        domain <span class="token function">time</span>
+    list                           list domains
+
+ Host and Hypervisor <span class="token punctuation">(</span>help keyword <span class="token string">'host'</span><span class="token punctuation">)</span>
+    allocpages                     Manipulate pages pool size
+    capabilities                   capabilities
+    cpu-baseline                   compute baseline CPU
+    cpu-compare                    compare <span class="token function">host</span> CPU with a CPU described by an XML <span class="token function">file</span>
+    cpu-models                     CPU models
+    domcapabilities                domain capabilities
+    freecell                       NUMA <span class="token function">free</span> memory
+    freepages                      NUMA <span class="token function">free</span> pages
+    <span class="token function">hostname</span>                       print the hypervisor <span class="token function">hostname</span>
+    hypervisor-cpu-baseline        compute baseline CPU usable by a specific hypervisor
+    hypervisor-cpu-compare         compare a CPU with the CPU created by a hypervisor on the <span class="token function">host</span>
+    maxvcpus                       connection vcpu maximum
+    node-memory-tune               Get or <span class="token builtin class-name">set</span> node memory parameters
+    nodecpumap                     node cpu map
+    nodecpustats                   Prints cpu stats of the node.
+    nodeinfo                       node information
+    nodememstats                   Prints memory stats of the node.
+    nodesuspend                    <span class="token function">suspend</span> the <span class="token function">host</span> node <span class="token keyword">for</span> a given <span class="token function">time</span> duration
+    sysinfo                        print the hypervisor sysinfo
+    uri                            print the hypervisor canonical URI
+    version                        show version
+
+ Interface <span class="token punctuation">(</span>help keyword <span class="token string">'interface'</span><span class="token punctuation">)</span>
+    iface-begin                    create a snapshot of current interfaces settings, <span class="token function">which</span> can be later committed <span class="token punctuation">(</span>iface-commit<span class="token punctuation">)</span> or restored <span class="token punctuation">(</span>iface-rollback<span class="token punctuation">)</span>
+    iface-bridge                   create a bridge device and attach an existing network device to it
+    iface-commit                   commit changes made since iface-begin and <span class="token function">free</span> restore point
+    iface-define                   define an inactive persistent physical <span class="token function">host</span> interface or modify an existing persistent one from an XML <span class="token function">file</span>
+    iface-destroy                  destroy a physical <span class="token function">host</span> interface <span class="token punctuation">(</span>disable it / <span class="token string">"if-down"</span><span class="token punctuation">)</span>
+    iface-dumpxml                  interface information <span class="token keyword">in</span> XML
+    iface-edit                     edit XML configuration <span class="token keyword">for</span> a physical <span class="token function">host</span> interface
+    iface-list                     list physical <span class="token function">host</span> interfaces
+    iface-mac                      convert an interface name to interface MAC address
+    iface-name                     convert an interface MAC address to interface name
+    iface-rollback                 rollback to previous saved configuration created via iface-begin
+    iface-start                    start a physical <span class="token function">host</span> interface <span class="token punctuation">(</span>enable it / <span class="token string">"if-up"</span><span class="token punctuation">)</span>
+    iface-unbridge                 undefine a bridge device after detaching its slave device
+    iface-undefine                 undefine a physical <span class="token function">host</span> interface <span class="token punctuation">(</span>remove it from configuration<span class="token punctuation">)</span>
+
+ Network Filter <span class="token punctuation">(</span>help keyword <span class="token string">'filter'</span><span class="token punctuation">)</span>
+    nwfilter-define                define or update a network filter from an XML <span class="token function">file</span>
+    nwfilter-dumpxml               network filter information <span class="token keyword">in</span> XML
+    nwfilter-edit                  edit XML configuration <span class="token keyword">for</span> a network filter
+    nwfilter-list                  list network filters
+    nwfilter-undefine              undefine a network filter
+    nwfilter-binding-create        create a network filter binding from an XML <span class="token function">file</span>
+    nwfilter-binding-delete        delete a network filter binding
+    nwfilter-binding-dumpxml       network filter information <span class="token keyword">in</span> XML
+    nwfilter-binding-list          list network filter bindings
+
+ Networking <span class="token punctuation">(</span>help keyword <span class="token string">'network'</span><span class="token punctuation">)</span>
+    net-autostart                  autostart a network
+    net-create                     create a network from an XML <span class="token function">file</span>
+    net-define                     define an inactive persistent virtual network or modify an existing persistent one from an XML <span class="token function">file</span>
+    net-destroy                    destroy <span class="token punctuation">(</span>stop<span class="token punctuation">)</span> a network
+    net-dhcp-leases                print lease info <span class="token keyword">for</span> a given network
+    net-dumpxml                    network information <span class="token keyword">in</span> XML
+    net-edit                       edit XML configuration <span class="token keyword">for</span> a network
+    net-event                      Network Events
+    net-info                       network information
+    net-list                       list networks
+    net-name                       convert a network UUID to network name
+    net-start                      start a <span class="token punctuation">(</span>previously defined<span class="token punctuation">)</span> inactive network
+    net-undefine                   undefine a persistent network
+    net-update                     update parts of an existing network<span class="token string">'s configuration
+    net-uuid                       convert a network name to network UUID
+
+ Node Device (help keyword '</span>nodedev<span class="token string">')
+    nodedev-create                 create a device defined by an XML file on the node
+    nodedev-destroy                destroy (stop) a device on the node
+    nodedev-detach                 detach node device from its device driver
+    nodedev-dumpxml                node device details in XML
+    nodedev-list                   enumerate devices on this host
+    nodedev-reattach               reattach node device to its device driver
+    nodedev-reset                  reset node device
+    nodedev-event                  Node Device Events
+
+ Secret (help keyword '</span>secret<span class="token string">')
+    secret-define                  define or modify a secret from an XML file
+    secret-dumpxml                 secret attributes in XML
+    secret-event                   Secret Events
+    secret-get-value               Output a secret value
+    secret-list                    list secrets
+    secret-set-value               set a secret value
+    secret-undefine                undefine a secret
+
+ Snapshot (help keyword '</span>snapshot<span class="token string">')
+    snapshot-create                Create a snapshot from XML
+    snapshot-create-as             Create a snapshot from a set of args
+    snapshot-current               Get or set the current snapshot
+    snapshot-delete                Delete a domain snapshot
+    snapshot-dumpxml               Dump XML for a domain snapshot
+    snapshot-edit                  edit XML for a snapshot
+    snapshot-info                  snapshot information
+    snapshot-list                  List snapshots for a domain
+    snapshot-parent                Get the name of the parent of a snapshot
+    snapshot-revert                Revert a domain to a snapshot
+
+ Storage Pool (help keyword '</span>pool<span class="token string">')
+    find-storage-pool-sources-as   find potential storage pool sources
+    find-storage-pool-sources      discover potential storage pool sources
+    pool-autostart                 autostart a pool
+    pool-build                     build a pool
+    pool-create-as                 create a pool from a set of args
+    pool-create                    create a pool from an XML file
+    pool-define-as                 define a pool from a set of args
+    pool-define                    define an inactive persistent storage pool or modify an existing persistent one from an XML file
+    pool-delete                    delete a pool
+    pool-destroy                   destroy (stop) a pool
+    pool-dumpxml                   pool information in XML
+    pool-edit                      edit XML configuration for a storage pool
+    pool-info                      storage pool information
+    pool-list                      list pools
+    pool-name                      convert a pool UUID to pool name
+    pool-refresh                   refresh a pool
+    pool-start                     start a (previously defined) inactive pool
+    pool-undefine                  undefine an inactive pool
+    pool-uuid                      convert a pool name to pool UUID
+    pool-event                     Storage Pool Events
+
+ Storage Volume (help keyword '</span>volume<span class="token string">')
+    vol-clone                      clone a volume.
+    vol-create-as                  create a volume from a set of args
+    vol-create                     create a vol from an XML file
+    vol-create-from                create a vol, using another volume as input
+    vol-delete                     delete a vol
+    vol-download                   download volume contents to a file
+    vol-dumpxml                    vol information in XML
+    vol-info                       storage vol information
+    vol-key                        returns the volume key for a given volume name or path
+    vol-list                       list vols
+    vol-name                       returns the volume name for a given volume key or path
+    vol-path                       returns the volume path for a given volume name or key
+    vol-pool                       returns the storage pool for a given volume key or path
+    vol-resize                     resize a vol
+    vol-upload                     upload file contents to a volume
+    vol-wipe                       wipe a vol
+
+ Virsh itself (help keyword '</span>virsh'<span class="token punctuation">)</span>
+    <span class="token builtin class-name">cd</span>                             change the current directory
+    <span class="token builtin class-name">echo</span>                           <span class="token builtin class-name">echo</span> arguments
+    <span class="token builtin class-name">exit</span>                           quit this interactive terminal
+    <span class="token builtin class-name">help</span>                           print <span class="token builtin class-name">help</span>
+    <span class="token builtin class-name">pwd</span>                            print the current directory
+    quit                           quit this interactive terminal
+    connect                        <span class="token punctuation">(</span>re<span class="token punctuation">)</span>connect to hypervisor<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="qemu-img"><a href="#qemu-img" class="headerlink" title="qemu-img"></a>qemu-img</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">qemu-img version <span class="token number">1.5</span>.3, Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token number">2004</span>-2008 Fabrice Bellard
+usage: qemu-img <span class="token builtin class-name">command</span> <span class="token punctuation">[</span>command options<span class="token punctuation">]</span>
+QEMU disk image utility
+
+Command syntax:
+  check <span class="token punctuation">[</span>-q<span class="token punctuation">]</span> <span class="token punctuation">[</span>-f fmt<span class="token punctuation">]</span> <span class="token punctuation">[</span>--output<span class="token operator">=</span>ofmt<span class="token punctuation">]</span> <span class="token punctuation">[</span>-r <span class="token punctuation">[</span>leaks <span class="token operator">|</span> all<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token punctuation">[</span>-T src_cache<span class="token punctuation">]</span> filename
+  create <span class="token punctuation">[</span>-q<span class="token punctuation">]</span> <span class="token punctuation">[</span>-f fmt<span class="token punctuation">]</span> <span class="token punctuation">[</span>-o options<span class="token punctuation">]</span> filename <span class="token punctuation">[</span>size<span class="token punctuation">]</span>
+  commit <span class="token punctuation">[</span>-q<span class="token punctuation">]</span> <span class="token punctuation">[</span>-f fmt<span class="token punctuation">]</span> <span class="token punctuation">[</span>-t cache<span class="token punctuation">]</span> filename
+  compare <span class="token punctuation">[</span>-f fmt<span class="token punctuation">]</span> <span class="token punctuation">[</span>-F fmt<span class="token punctuation">]</span> <span class="token punctuation">[</span>-T src_cache<span class="token punctuation">]</span> <span class="token punctuation">[</span>-p<span class="token punctuation">]</span> <span class="token punctuation">[</span>-q<span class="token punctuation">]</span> <span class="token punctuation">[</span>-s<span class="token punctuation">]</span> filename1 filename2
+  convert <span class="token punctuation">[</span>-c<span class="token punctuation">]</span> <span class="token punctuation">[</span>-p<span class="token punctuation">]</span> <span class="token punctuation">[</span>-q<span class="token punctuation">]</span> <span class="token punctuation">[</span>-n<span class="token punctuation">]</span> <span class="token punctuation">[</span>-f fmt<span class="token punctuation">]</span> <span class="token punctuation">[</span>-t cache<span class="token punctuation">]</span> <span class="token punctuation">[</span>-T src_cache<span class="token punctuation">]</span> <span class="token punctuation">[</span>-O output_fmt<span class="token punctuation">]</span> <span class="token punctuation">[</span>-o options<span class="token punctuation">]</span> <span class="token punctuation">[</span>-s snapshot_name<span class="token punctuation">]</span> <span class="token punctuation">[</span>-S sparse_size<span class="token punctuation">]</span> filename <span class="token punctuation">[</span>filename2 <span class="token punctuation">[</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span><span class="token punctuation">]</span> output_filename
+  info <span class="token punctuation">[</span>-f fmt<span class="token punctuation">]</span> <span class="token punctuation">[</span>--output<span class="token operator">=</span>ofmt<span class="token punctuation">]</span> <span class="token punctuation">[</span>--backing-chain<span class="token punctuation">]</span> filename
+  map <span class="token punctuation">[</span>-f fmt<span class="token punctuation">]</span> <span class="token punctuation">[</span>--output<span class="token operator">=</span>ofmt<span class="token punctuation">]</span> filename
+  snapshot <span class="token punctuation">[</span>-q<span class="token punctuation">]</span> <span class="token punctuation">[</span>-l <span class="token operator">|</span> -a snapshot <span class="token operator">|</span> -c snapshot <span class="token operator">|</span> -d snapshot<span class="token punctuation">]</span> filename
+  rebase <span class="token punctuation">[</span>-q<span class="token punctuation">]</span> <span class="token punctuation">[</span>-f fmt<span class="token punctuation">]</span> <span class="token punctuation">[</span>-t cache<span class="token punctuation">]</span> <span class="token punctuation">[</span>-T src_cache<span class="token punctuation">]</span> <span class="token punctuation">[</span>-p<span class="token punctuation">]</span> <span class="token punctuation">[</span>-u<span class="token punctuation">]</span> -b backing_file <span class="token punctuation">[</span>-F backing_fmt<span class="token punctuation">]</span> filename
+  resize <span class="token punctuation">[</span>-q<span class="token punctuation">]</span> filename <span class="token punctuation">[</span>+ <span class="token operator">|</span> -<span class="token punctuation">]</span>size
+  amend <span class="token punctuation">[</span>-q<span class="token punctuation">]</span> <span class="token punctuation">[</span>-f fmt<span class="token punctuation">]</span> <span class="token punctuation">[</span>-t cache<span class="token punctuation">]</span> -o options filename
+
+Command parameters:
+  <span class="token string">'filename'</span> is a disk image filename
+  <span class="token string">'fmt'</span> is the disk image format. It is guessed automatically <span class="token keyword">in</span> <span class="token function">most</span> cases
+  <span class="token string">'cache'</span> is the cache mode used to <span class="token function">write</span> the output disk image, the valid
+    options are: <span class="token string">'none'</span>, <span class="token string">'writeback'</span> <span class="token punctuation">(</span>default, except <span class="token keyword">for</span> convert<span class="token punctuation">)</span>, <span class="token string">'writethrough'</span>,
+    <span class="token string">'directsync'</span> and <span class="token string">'unsafe'</span> <span class="token punctuation">(</span>default <span class="token keyword">for</span> convert<span class="token punctuation">)</span>
+  <span class="token string">'src_cache'</span> is the cache mode used to <span class="token builtin class-name">read</span> input disk images, the valid
+    options are the same as <span class="token keyword">for</span> the <span class="token string">'cache'</span> option
+  <span class="token string">'size'</span> is the disk image size <span class="token keyword">in</span> bytes. Optional suffixes
+    <span class="token string">'k'</span> or <span class="token string">'K'</span> <span class="token punctuation">(</span>kilobyte, <span class="token number">1024</span><span class="token punctuation">)</span>, <span class="token string">'M'</span> <span class="token punctuation">(</span>megabyte, 1024k<span class="token punctuation">)</span>, <span class="token string">'G'</span> <span class="token punctuation">(</span>gigabyte, 1024M<span class="token punctuation">)</span>,
+    <span class="token string">'T'</span> <span class="token punctuation">(</span>terabyte, 1024G<span class="token punctuation">)</span>, <span class="token string">'P'</span> <span class="token punctuation">(</span>petabyte, 1024T<span class="token punctuation">)</span> and <span class="token string">'E'</span> <span class="token punctuation">(</span>exabyte, 1024P<span class="token punctuation">)</span>  are
+    supported. <span class="token string">'b'</span> is ignored.
+  <span class="token string">'output_filename'</span> is the destination disk image filename
+  <span class="token string">'output_fmt'</span> is the destination <span class="token function">format</span>
+  <span class="token string">'options'</span> is a comma separated list of <span class="token function">format</span> specific options <span class="token keyword">in</span> a
+    <span class="token assign-left variable">name</span><span class="token operator">=</span>value format. Use -o ? <span class="token keyword">for</span> an overview of the options supported by the
+    used <span class="token function">format</span>
+  <span class="token string">'-c'</span> indicates that target image must be compressed <span class="token punctuation">(</span>qcow <span class="token function">format</span> only<span class="token punctuation">)</span>
+  <span class="token string">'-u'</span> enables unsafe rebasing. It is assumed that old and new backing <span class="token function">file</span>
+       match exactly. The image doesn<span class="token string">'t need a working backing file before
+       rebasing in this case (useful for renaming the backing file)
+  '</span>-h<span class="token string">' with or without a command shows this help and lists the supported formats
+  '</span>-p<span class="token string">' show progress of command (only certain commands)
+  '</span>-q<span class="token string">' use Quiet mode - do not print any output (except errors)
+  '</span>-S<span class="token string">' indicates the consecutive number of bytes (defaults to 4k) that must
+       contain only zeros for qemu-img to create a sparse image during
+       conversion. If the number of bytes is 0, the source will not be scanned for
+       unallocated or zero sectors, and the destination image will always be
+       fully allocated
+  '</span>--output<span class="token string">' takes the format in which the output must be done (human or json)
+  '</span>-n<span class="token string">' skips the target volume creation (useful if the volume is created
+       prior to running qemu-img)
+
+Parameters to check subcommand:
+  '</span>-r<span class="token string">' tries to repair any inconsistencies that are found during the check.
+       '</span>-r leaks<span class="token string">' repairs only cluster leaks, whereas '</span>-r all<span class="token string">' fixes all
+       kinds of errors, with a higher risk of choosing the wrong fix or
+       hiding corruption that has already occurred.
+
+Parameters to snapshot subcommand:
+  '</span>snapshot<span class="token string">' is the name of the snapshot to create, apply or delete
+  '</span>-a<span class="token string">' applies a snapshot (revert disk to saved state)
+  '</span>-c<span class="token string">' creates a snapshot
+  '</span>-d<span class="token string">' deletes a snapshot
+  '</span>-l<span class="token string">' lists all snapshots in the given image
+
+Parameters to compare subcommand:
+  '</span>-f<span class="token string">' first image format
+  '</span>-F<span class="token string">' second image format
+  '</span>-s' run <span class="token keyword">in</span> Strict mode - fail on different image size or sector allocation
+
+Supported formats: vvfat vpc vmdk vhdx vdi <span class="token function">ssh</span> sheepdog rbd raw host_cdrom host_floppy host_device <span class="token function">file</span> qed qcow2 qcow parallels nbd iscsi gluster dmg tftp ftps <span class="token function">ftp</span> https http cloop bochs blkverify blkdebug<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="kvm自动化脚本"><a href="#kvm自动化脚本" class="headerlink" title="kvm自动化脚本"></a>kvm自动化脚本</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">virt-install  --name<span class="token operator">=</span>EVOPSS --ram <span class="token number">8192</span> --vcpus<span class="token operator">=</span><span class="token number">2</span> /
+--disk <span class="token assign-left variable">path</span><span class="token operator">=</span>/var/lib/libvirt/images/tomcat_01.img,size<span class="token operator">=</span><span class="token number">20</span>,format<span class="token operator">=</span>raw,bus<span class="token operator">=</span>virtio /
+--cdrom /var/iso/CentOS-6.7-x86_64-minimal.iso --network <span class="token assign-left variable">bridge</span><span class="token operator">=</span>br0,model<span class="token operator">=</span>virtio /
+--vnc --accelerate --force  --autostart<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">ender viggin</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://blog.evcoder.com/2021/11/21/virtualization/kvm/xu-ni-ji-kvm/">https://blog.evcoder.com/2021/11/21/virtualization/kvm/xu-ni-ji-kvm/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">ender viggin</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/11/23/linux/package/linux-bao-guan-li-yum/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="【包管理】yum">
+                        
+                        <span class="card-title">【包管理】yum</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            【包管理】yum
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-23
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            ender viggin
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/11/21/kubernetes/kubesphere/kubernetes-guan-li-kubesphere/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="【Kubernetes管理】KubeSphere">
+                        
+                        <span class="card-title">【Kubernetes管理】KubeSphere</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            【Kubernetes管理】KubeSphere
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            ender viggin
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">126k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

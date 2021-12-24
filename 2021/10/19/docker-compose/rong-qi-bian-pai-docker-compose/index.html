@@ -1,0 +1,1300 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="【容器编排】Docker Compose, EvBlog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>【容器编排】Docker Compose | EvBlog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="EvBlog" type="application/atom+xml">
+</head>
+
+
+
+   <style>
+    body{
+       background-image: url(/medias/background.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">EvBlog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">EvBlog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '57fdbb0b59eaa6727d09c0ab99e45c128769ff6822003fe68d42bbb575a708f7';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('Please enter the password to access this article')).toString(CryptoJS.enc.Hex)) {
+                alert('password error, will return home page页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">【容器编排】Docker Compose</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/docker-compose/">
+                                <span class="chip bg-color">docker compose</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AE%B9%E5%99%A8%E7%BC%96%E6%8E%92/" class="post-category">
+                                容器编排
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-19
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-12-24
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    10 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="【容器编排】Docker-Compose"><a href="#【容器编排】Docker-Compose" class="headerlink" title="【容器编排】Docker Compose"></a>【容器编排】Docker Compose</h1><blockquote>
+<p>compose github地址： <a target="_blank" rel="noopener" href="https://github.com/docker/compose">https://github.com/docker/compose</a></p>
+</blockquote>
+<h2 id="compose简介"><a href="#compose简介" class="headerlink" title="compose简介"></a>compose简介</h2><p>Compose 是用于定义和运行多容器 Docker 应用程序的工具。</p>
+<h2 id="compose环境配置"><a href="#compose环境配置" class="headerlink" title="compose环境配置"></a>compose环境配置</h2><ul>
+<li><p>linux安装</p>
+<blockquote>
+<p>compose 各版本: <a target="_blank" rel="noopener" href="https://github.com/docker/compose/releases">https://github.com/docker/compose/releases</a> </p>
+</blockquote>
+</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">sudo curl -L "https://github.com/docker/compose/releases/download/latest/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="compose命令"><a href="#compose命令" class="headerlink" title="compose命令"></a>compose命令</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Usage:  docker compose [OPTIONS] COMMAND
+
+Docker Compose
+
+Options:
+      --ansi string                Control when to print ANSI control characters ("never"|"always"|"auto") (default "auto")
+      --env-file string            Specify an alternate environment file.
+  -f, --file stringArray           Compose configuration files
+      --profile stringArray        Specify a profile to enable
+      --project-directory string   Specify an alternate working directory
+                                   (default: the path of the Compose file)
+  -p, --project-name string        Project name
+
+Commands:
+  build       构建或重新构建服务
+  convert     Converts the compose file to platform's canonical format
+  cp          Copy files/folders between a service container and the local filesystem
+  create      Creates containers for a service.
+  down        Stop and remove containers, networks
+  events      Receive real time events from containers.
+  exec        Execute a command in a running container.
+  images      列出所有创建的容器所使用的镜像
+  kill        强制停止服务容器
+  logs        查看容器日志输出
+  ls          列出所有运行的compose项目
+  pause       pause services
+  port        打印绑定的公共端口
+  ps          列出所有容器。
+  pull        拉取服务镜像。
+  push        推送所有服务的镜像
+  restart     重启容器
+  rm          删除停止的服务容器。
+  run         在一个服务上执行一个命令。
+  start       启动一个已经存在的服务容器。
+  stop        停止一个已经运行的容器，但不删除它。
+  top         Display the running processes
+  unpause     unpause services
+  up          构建，（重新）创建，启动，链接一个服务相关的容器。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="compose语法"><a href="#compose语法" class="headerlink" title="compose语法"></a>compose语法</h3><blockquote>
+<p>默认的模板文件是 <code>docker-compose.yml</code>，其中定义的每个服务都必须通过 <code>image</code> 指令指定镜像或 <code>build</code> 指令（需要 Dockerfile）来自动构建。</p>
+</blockquote>
+<p><strong>服务（service）</strong>：一个应用容器，实际上可以运行多个相同镜像的实例。</p>
+<p>**项目(project)**：由一组关联的应用容器组成的一个完整业务单元。</p>
+<h4 id="version"><a href="#version" class="headerlink" title="version"></a>version</h4><p>指定本 yml 依从的 compose 哪个版本制定的。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3"</span>
+<span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"2"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="image"><a href="#image" class="headerlink" title="image"></a>image</h4><p>指定为镜像名称或镜像 ID。如果镜像在本地不存在，<code>Compose</code> 将会尝试拉去这个镜像。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">image</span><span class="token punctuation">:</span> ubuntu<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="build"><a href="#build" class="headerlink" title="build"></a>build</h4><p>指定 <code>Dockerfile</code> 所在文件夹的路径。 <code>Compose</code> 将会利用它自动构建这个镜像，然后使用这个镜像。</p>
+<ul>
+<li><strong>context</strong>: 上下文路径</li>
+<li><strong>dockerfile</strong>：指定构建镜像的 Dockerfile 文件名。</li>
+<li><strong>args</strong>：添加构建参数，这是只能在构建过程中访问的环境变量。</li>
+<li><strong>labels</strong>：设置构建镜像的标签。</li>
+<li><strong>target</strong>：多层构建，可以指定构建哪一层。</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">build</span><span class="token punctuation">:</span> /path/to/build/dir<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="cap-add，cap-drop"><a href="#cap-add，cap-drop" class="headerlink" title="cap_add，cap_drop"></a>cap_add，cap_drop</h4><p>添加或删除容器拥有的宿主机的内核功能。</p>
+<pre class="line-numbers language-none"><code class="language-none">cap_add:
+  - ALL # 开启全部权限
+
+cap_drop:
+  - SYS_PTRACE # 关闭 ptrace权限<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="cgroup-parent"><a href="#cgroup-parent" class="headerlink" title="cgroup_parent"></a>cgroup_parent</h4><p>为容器指定父 cgroup 组，意味着将继承该组的资源限制。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">cgroup_parent</span><span class="token punctuation">:</span> m<span class="token punctuation">-</span>executor<span class="token punctuation">-</span>abcd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="command"><a href="#command" class="headerlink" title="command"></a>command</h4><p>覆盖容器启动的默认命令。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"bundle"</span><span class="token punctuation">,</span> <span class="token string">"exec"</span><span class="token punctuation">,</span> <span class="token string">"thin"</span><span class="token punctuation">,</span> <span class="token string">"-p"</span><span class="token punctuation">,</span> <span class="token string">"3000"</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="container-name"><a href="#container-name" class="headerlink" title="container_name"></a>container_name</h4><p>指定自定义容器名称，而不是生成的默认名称。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">container_name</span><span class="token punctuation">:</span> container<span class="token punctuation">-</span>name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="depends-on"><a href="#depends-on" class="headerlink" title="depends_on"></a>depends_on</h4><p>设置依赖关系。</p>
+<ul>
+<li>docker-compose up ：以依赖性顺序启动服务。</li>
+<li>docker-compose up SERVICE ：自动包含 SERVICE 的依赖项。</li>
+<li>docker-compose stop ：按依赖关系顺序停止服务。</li>
+</ul>
+<h4 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h4><p>指定与服务的部署和运行有关的配置。只在 swarm 模式下才会有用。</p>
+<p>可以选参数：</p>
+<ul>
+<li><strong>endpoint_mode</strong>：访问集群服务的方式。</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">endpoint_mode</span><span class="token punctuation">:</span> vip 
+<span class="token comment"># Docker 集群服务一个对外的虚拟 ip。所有的请求都会通过这个虚拟 ip 到达集群服务内部的机器。</span>
+<span class="token key atrule">endpoint_mode</span><span class="token punctuation">:</span> dnsrr
+<span class="token comment"># DNS 轮询（DNSRR）。所有的请求会自动轮询获取到集群 ip 列表中的一个 ip 地址。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p><strong>labels</strong>：在服务上设置标签。可以用容器上的 labels（跟 deploy 同级的配置） 覆盖 deploy 下的 labels。</p>
+</li>
+<li><p><strong>mode</strong>：指定服务提供的模式。</p>
+<ul>
+<li><strong>replicated</strong>：复制服务，复制指定服务到集群的机器上。</li>
+<li><strong>global</strong>：全局服务，服务将部署至集群的每个节点。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>replicas：mode</strong> 为 replicated 时，需要使用此参数配置具体运行的节点数量。</p>
+</li>
+<li><p><strong>resources</strong>：配置服务器资源使用的限制，例如上例子，配置 redis 集群运行需要的 cpu 的百分比 和 内存的占用。避免占用资源过高出现异常。</p>
+</li>
+<li><p><strong>restart_policy</strong>：配置如何在退出容器时重新启动容器。</p>
+<ul>
+<li>condition：可选 none，on-failure 或者 any（默认值：any）。</li>
+<li>delay：设置多久之后重启（默认值：0）。</li>
+<li>max_attempts：尝试重新启动容器的次数，超出次数，则不再尝试（默认值：一直重试）。</li>
+<li>window：设置容器重启超时时间（默认值：0）。</li>
+</ul>
+</li>
+<li><p><strong>rollback_config</strong>：配置在更新失败的情况下应如何回滚服务。</p>
+<ul>
+<li>parallelism：一次要回滚的容器数。如果设置为0，则所有容器将同时回滚。</li>
+<li>delay：每个容器组回滚之间等待的时间（默认为0s）。</li>
+<li>failure_action：如果回滚失败，该怎么办。其中一个 continue 或者 pause（默认pause）。</li>
+<li>monitor：每个容器更新后，持续观察是否失败了的时间 (ns|us|ms|s|m|h)（默认为0s）。</li>
+<li>max_failure_ratio：在回滚期间可以容忍的故障率（默认为0）。</li>
+<li>order：回滚期间的操作顺序。其中一个 stop-first（串行回滚），或者 start-first（并行回滚）（默认 stop-first ）。</li>
+</ul>
+</li>
+<li><p><strong>update_config</strong>：配置应如何更新服务，对于配置滚动更新很有用。</p>
+<ul>
+<li>parallelism：一次更新的容器数。</li>
+<li>delay：在更新一组容器之间等待的时间。</li>
+<li>failure_action：如果更新失败，该怎么办。其中一个 continue，rollback 或者pause （默认：pause）。</li>
+<li>monitor：每个容器更新后，持续观察是否失败了的时间 (ns|us|ms|s|m|h)（默认为0s）。</li>
+<li>max_failure_ratio：在更新过程中可以容忍的故障率。</li>
+<li>order：回滚期间的操作顺序。其中一个 stop-first（串行回滚），或者 start-first（并行回滚）（默认stop-first）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>注</strong>：仅支持 V3.4 及更高版本。</p>
+<h4 id="devices"><a href="#devices" class="headerlink" title="devices"></a>devices</h4><p>指定设备映射列表。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">devices</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">"/dev/ttyUSB0:/dev/ttyUSB0"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="dns"><a href="#dns" class="headerlink" title="dns"></a>dns</h4><p>自定义 DNS 服务器，可以是单个值或列表的多个值。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">dns</span><span class="token punctuation">:</span> 8.8.8.8
+
+<span class="token key atrule">dns</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> 8.8.8.8
+  <span class="token punctuation">-</span> 9.9.9.9<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="dns-search"><a href="#dns-search" class="headerlink" title="dns_search"></a>dns_search</h4><p>自定义 DNS 搜索域。可以是单个值或列表。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">dns_search</span><span class="token punctuation">:</span> example.com
+
+<span class="token key atrule">dns_search</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> dc1.example.com
+  <span class="token punctuation">-</span> dc2.example.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="entrypoint"><a href="#entrypoint" class="headerlink" title="entrypoint"></a>entrypoint</h4><p>覆盖容器默认的 entrypoint。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">entrypoint</span><span class="token punctuation">:</span> /code/entrypoint.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>也可以是以下格式：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">entrypoint</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> php
+    <span class="token punctuation">-</span> <span class="token punctuation">-</span>d
+    <span class="token punctuation">-</span> zend_extension=/usr/local/lib/php/extensions/no<span class="token punctuation">-</span>debug<span class="token punctuation">-</span>non<span class="token punctuation">-</span>zts<span class="token punctuation">-</span>20100525/xdebug.so
+    <span class="token punctuation">-</span> <span class="token punctuation">-</span>d
+    <span class="token punctuation">-</span> memory_limit=<span class="token punctuation">-</span><span class="token number">1</span>
+    <span class="token punctuation">-</span> vendor/bin/phpunit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="env-file"><a href="#env-file" class="headerlink" title="env_file"></a>env_file</h4><p>从文件添加环境变量。可以是单个值或列表的多个值。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">env_file</span><span class="token punctuation">:</span> .env<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>也可以是列表格式：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">env_file</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> ./common.env
+  <span class="token punctuation">-</span> ./apps/web.env
+  <span class="token punctuation">-</span> /opt/secrets.env<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="environment"><a href="#environment" class="headerlink" title="environment"></a>environment</h4><p>添加环境变量。您可以使用数组或字典、任何布尔值，布尔值需要用引号引起来，以确保 YML 解析器不会将其转换为 True 或 False。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">environment</span><span class="token punctuation">:</span>
+  <span class="token key atrule">RACK_ENV</span><span class="token punctuation">:</span> development
+  <span class="token key atrule">SHOW</span><span class="token punctuation">:</span> <span class="token string">'true'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="expose"><a href="#expose" class="headerlink" title="expose"></a>expose</h4><p>暴露端口，但不映射到宿主机，只被连接的服务访问。</p>
+<p>仅可以指定内部端口为参数：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">expose</span><span class="token punctuation">:</span>
+ <span class="token punctuation">-</span> <span class="token string">"3000"</span>
+ <span class="token punctuation">-</span> <span class="token string">"8000"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="extra-hosts"><a href="#extra-hosts" class="headerlink" title="extra_hosts"></a>extra_hosts</h4><p>添加主机名映射。类似 docker client –add-host。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">extra_hosts</span><span class="token punctuation">:</span>
+ <span class="token punctuation">-</span> <span class="token string">"somehost:162.242.195.82"</span>
+ <span class="token punctuation">-</span> <span class="token string">"otherhost:50.31.209.229"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>以上会在此服务的内部容器中 /etc/hosts 创建一个具有 ip 地址和主机名的映射关系：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">162.242.195.82  somehost
+50.31.209.229   otherhost<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="healthcheck"><a href="#healthcheck" class="headerlink" title="healthcheck"></a>healthcheck</h4><p>用于检测 docker 服务是否健康运行。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">healthcheck</span><span class="token punctuation">:</span>
+  <span class="token key atrule">test</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"CMD"</span><span class="token punctuation">,</span> <span class="token string">"curl"</span><span class="token punctuation">,</span> <span class="token string">"-f"</span><span class="token punctuation">,</span> <span class="token string">"http://localhost"</span><span class="token punctuation">]</span> <span class="token comment"># 设置检测程序</span>
+  <span class="token key atrule">interval</span><span class="token punctuation">:</span> 1m30s <span class="token comment"># 设置检测间隔</span>
+  <span class="token key atrule">timeout</span><span class="token punctuation">:</span> 10s <span class="token comment"># 设置检测超时时间</span>
+  <span class="token key atrule">retries</span><span class="token punctuation">:</span> <span class="token number">3</span> <span class="token comment"># 设置重试次数</span>
+  <span class="token key atrule">start_period</span><span class="token punctuation">:</span> 40s <span class="token comment"># 启动后，多少秒开始启动检测程序</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="image-1"><a href="#image-1" class="headerlink" title="image"></a>image</h4><p>指定容器运行的镜像。以下格式都可以：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">image</span><span class="token punctuation">:</span> redis
+<span class="token key atrule">image</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">:</span><span class="token number">14.04</span>
+<span class="token key atrule">image</span><span class="token punctuation">:</span> tutum/influxdb
+<span class="token key atrule">image</span><span class="token punctuation">:</span> example<span class="token punctuation">-</span>registry.com<span class="token punctuation">:</span>4000/postgresql
+<span class="token key atrule">image</span><span class="token punctuation">:</span> a4bc65fd <span class="token comment"># 镜像id</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h4><p>服务的日志记录配置。</p>
+<p>driver：指定服务容器的日志记录驱动程序，默认值为json-file。有以下三个选项</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">driver</span><span class="token punctuation">:</span> <span class="token string">"json-file"</span>
+<span class="token key atrule">driver</span><span class="token punctuation">:</span> <span class="token string">"syslog"</span>
+<span class="token key atrule">driver</span><span class="token punctuation">:</span> <span class="token string">"none"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>仅在 json-file 驱动程序下，可以使用以下参数，限制日志得数量和大小。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">logging</span><span class="token punctuation">:</span>
+  <span class="token key atrule">driver</span><span class="token punctuation">:</span> json<span class="token punctuation">-</span>file
+  <span class="token key atrule">options</span><span class="token punctuation">:</span>
+    <span class="token key atrule">max-size</span><span class="token punctuation">:</span> <span class="token string">"200k"</span> <span class="token comment"># 单个文件大小为200k</span>
+    <span class="token key atrule">max-file</span><span class="token punctuation">:</span> <span class="token string">"10"</span> <span class="token comment"># 最多10个文件</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>当达到文件限制上限，会自动删除旧得文件。</p>
+<p>syslog 驱动程序下，可以使用 syslog-address 指定日志接收地址。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">logging</span><span class="token punctuation">:</span>
+  <span class="token key atrule">driver</span><span class="token punctuation">:</span> syslog
+  <span class="token key atrule">options</span><span class="token punctuation">:</span>
+    <span class="token key atrule">syslog-address</span><span class="token punctuation">:</span> <span class="token string">"tcp://192.168.0.42:123"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="network-mode"><a href="#network-mode" class="headerlink" title="network_mode"></a>network_mode</h4><p>设置网络模式。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">network_mode</span><span class="token punctuation">:</span> <span class="token string">"bridge"</span>
+<span class="token key atrule">network_mode</span><span class="token punctuation">:</span> <span class="token string">"host"</span>
+<span class="token key atrule">network_mode</span><span class="token punctuation">:</span> <span class="token string">"none"</span>
+<span class="token key atrule">network_mode</span><span class="token punctuation">:</span> <span class="token string">"service:[service name]"</span>
+<span class="token key atrule">network_mode</span><span class="token punctuation">:</span> <span class="token string">"container:[container name/id]"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="networks"><a href="#networks" class="headerlink" title="networks"></a>networks</h4><p>配置容器连接的网络，引用顶级 networks 下的条目 。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">some-service</span><span class="token punctuation">:</span>
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token key atrule">some-network</span><span class="token punctuation">:</span>
+        <span class="token key atrule">aliases</span><span class="token punctuation">:</span>
+         <span class="token punctuation">-</span> alias1
+      <span class="token key atrule">other-network</span><span class="token punctuation">:</span>
+        <span class="token key atrule">aliases</span><span class="token punctuation">:</span>
+         <span class="token punctuation">-</span> alias2
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+  <span class="token key atrule">some-network</span><span class="token punctuation">:</span>
+    <span class="token comment"># Use a custom driver</span>
+    <span class="token key atrule">driver</span><span class="token punctuation">:</span> custom<span class="token punctuation">-</span>driver<span class="token punctuation">-</span><span class="token number">1</span>
+  <span class="token key atrule">other-network</span><span class="token punctuation">:</span>
+    <span class="token comment"># Use a custom driver which takes special options</span>
+    <span class="token key atrule">driver</span><span class="token punctuation">:</span> custom<span class="token punctuation">-</span>driver<span class="token punctuation">-</span><span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>aliases</strong> ：同一网络上的其他容器可以使用服务名称或此别名来连接到对应容器的服务。</p>
+<h4 id="restart"><a href="#restart" class="headerlink" title="restart"></a>restart</h4><ul>
+<li>no：是默认的重启策略，在任何情况下都不会重启容器。</li>
+<li>always：容器总是重新启动。</li>
+<li>on-failure：在容器非正常退出时（退出状态非0），才会重启容器。</li>
+<li>unless-stopped：在容器退出时总是重启容器，但是不考虑在Docker守护进程启动时就已经停止了的容器</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">restart</span><span class="token punctuation">:</span> <span class="token string">"no"</span>
+<span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+<span class="token key atrule">restart</span><span class="token punctuation">:</span> on<span class="token punctuation">-</span>failure
+<span class="token key atrule">restart</span><span class="token punctuation">:</span> unless<span class="token punctuation">-</span>stopped<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注：swarm 集群模式，请改用 restart_policy。</p>
+<h4 id="secrets"><a href="#secrets" class="headerlink" title="secrets"></a>secrets</h4><p>存储敏感数据，例如密码：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.1"</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+
+<span class="token key atrule">mysql</span><span class="token punctuation">:</span>
+  <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+    <span class="token key atrule">MYSQL_ROOT_PASSWORD_FILE</span><span class="token punctuation">:</span> /run/secrets/my_secret
+  <span class="token key atrule">secrets</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> my_secret
+
+<span class="token key atrule">secrets</span><span class="token punctuation">:</span>
+  <span class="token key atrule">my_secret</span><span class="token punctuation">:</span>
+    <span class="token key atrule">file</span><span class="token punctuation">:</span> ./my_secret.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="security-opt"><a href="#security-opt" class="headerlink" title="security_opt"></a>security_opt</h4><p>修改容器默认的 schema 标签。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">security<span class="token punctuation">-</span>opt：
+  <span class="token punctuation">-</span> label<span class="token punctuation">:</span>user<span class="token punctuation">:</span>USER   <span class="token comment"># 设置容器的用户标签</span>
+  <span class="token punctuation">-</span> label<span class="token punctuation">:</span>role<span class="token punctuation">:</span>ROLE   <span class="token comment"># 设置容器的角色标签</span>
+  <span class="token punctuation">-</span> label<span class="token punctuation">:</span>type<span class="token punctuation">:</span>TYPE   <span class="token comment"># 设置容器的安全策略标签</span>
+  <span class="token punctuation">-</span> label<span class="token punctuation">:</span>level<span class="token punctuation">:</span>LEVEL  <span class="token comment"># 设置容器的安全等级标签</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="stop-grace-period"><a href="#stop-grace-period" class="headerlink" title="stop_grace_period"></a>stop_grace_period</h4><p>指定在容器无法处理 SIGTERM (或者任何 stop_signal 的信号)，等待多久后发送 SIGKILL 信号关闭容器。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">stop_grace_period</span><span class="token punctuation">:</span> 1s <span class="token comment"># 等待 1 秒</span>
+<span class="token key atrule">stop_grace_period</span><span class="token punctuation">:</span> 1m30s <span class="token comment"># 等待 1 分 30 秒 </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>默认的等待时间是 10 秒。</p>
+<h4 id="stop-signal"><a href="#stop-signal" class="headerlink" title="stop_signal"></a>stop_signal</h4><p>设置停止容器的替代信号。默认情况下使用 SIGTERM 。</p>
+<p>以下示例，使用 SIGUSR1 替代信号 SIGTERM 来停止容器。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">stop_signal</span><span class="token punctuation">:</span> SIGUSR1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="sysctls"><a href="#sysctls" class="headerlink" title="sysctls"></a>sysctls</h4><p>设置容器中的内核参数，可以使用数组或字典格式。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">sysctls</span><span class="token punctuation">:</span>
+  <span class="token key atrule">net.core.somaxconn</span><span class="token punctuation">:</span> <span class="token number">1024</span>
+  <span class="token key atrule">net.ipv4.tcp_syncookies</span><span class="token punctuation">:</span> <span class="token number">0</span>
+
+<span class="token key atrule">sysctls</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> net.core.somaxconn=1024
+  <span class="token punctuation">-</span> net.ipv4.tcp_syncookies=0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="tmpfs"><a href="#tmpfs" class="headerlink" title="tmpfs"></a>tmpfs</h4><p>在容器内安装一个临时文件系统。可以是单个值或列表的多个值。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">tmpfs</span><span class="token punctuation">:</span> /run
+
+<span class="token key atrule">tmpfs</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> /run
+  <span class="token punctuation">-</span> /tmp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="ulimits"><a href="#ulimits" class="headerlink" title="ulimits"></a>ulimits</h4><p>覆盖容器默认的 ulimit。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">ulimits</span><span class="token punctuation">:</span>
+  <span class="token key atrule">nproc</span><span class="token punctuation">:</span> <span class="token number">65535</span>
+  <span class="token key atrule">nofile</span><span class="token punctuation">:</span>
+    <span class="token key atrule">soft</span><span class="token punctuation">:</span> <span class="token number">20000</span>
+    <span class="token key atrule">hard</span><span class="token punctuation">:</span> <span class="token number">40000</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="volumes"><a href="#volumes" class="headerlink" title="volumes"></a>volumes</h4><p>将主机的数据卷或着文件挂载到容器里。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">"3.7"</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">db</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> postgres<span class="token punctuation">:</span>latest
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"/localhost/postgres.sock:/var/run/postgres/postgres.sock"</span>
+      <span class="token punctuation">-</span> <span class="token string">"/localhost/data:/var/lib/postgresql/data"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">ender viggin</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://blog.evcoder.com/2021/10/19/docker-compose/rong-qi-bian-pai-docker-compose/">https://blog.evcoder.com/2021/10/19/docker-compose/rong-qi-bian-pai-docker-compose/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">ender viggin</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/docker-compose/">
+                                    <span class="chip bg-color">docker compose</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/10/19/frontend/css/cass/css-yu-bian-yi-sass/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Sass">
+                        
+                        <span class="card-title">Sass</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Sass
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Css%E9%A2%84%E7%BC%96%E8%AF%91/" class="post-category">
+                                    Css预编译
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/sass/">
+                        <span class="chip bg-color">sass</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/19/python/flask/web-kuang-jia-flask/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Flask">
+                        
+                        <span class="card-title">Flask</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Flask
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/web%E6%A1%86%E6%9E%B6/" class="post-category">
+                                    web框架
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/flask/">
+                        <span class="chip bg-color">flask</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">126k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

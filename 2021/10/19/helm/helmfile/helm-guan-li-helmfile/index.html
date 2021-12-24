@@ -1,0 +1,1316 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="【Helm管理】Helmfile, EvBlog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>【Helm管理】Helmfile | EvBlog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="EvBlog" type="application/atom+xml">
+</head>
+
+
+
+   <style>
+    body{
+       background-image: url(/medias/background.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">EvBlog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">EvBlog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '57fdbb0b59eaa6727d09c0ab99e45c128769ff6822003fe68d42bbb575a708f7';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('Please enter the password to access this article')).toString(CryptoJS.enc.Hex)) {
+                alert('password error, will return home page页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">【Helm管理】Helmfile</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/helmfile/">
+                                <span class="chip bg-color">helmfile</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Helm%E7%AE%A1%E7%90%86/" class="post-category">
+                                Helm管理
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-19
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-12-24
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    16 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Helmfile"><a href="#Helmfile" class="headerlink" title="Helmfile"></a>Helmfile</h1><blockquote>
+<p>helmfile github 地址： <a target="_blank" rel="noopener" href="https://github.com/roboll/helmfile">https://github.com/roboll/helmfile</a></p>
+</blockquote>
+<h2 id="Helmfile简介"><a href="#Helmfile简介" class="headerlink" title="Helmfile简介"></a>Helmfile简介</h2><p>helmfile通过<code>helmfile.yaml</code>文件帮助管理和维护众多的helm chart。</p>
+<p><strong>helmfile作用：</strong></p>
+<ul>
+<li><p>集成在CICD中，提高部署的可观测性和可重复性，区分环境，同时避免过多使用–set造成的混淆</p>
+</li>
+<li><p>方便对helm chart进行版本控制（指定版本范围，锁定版本）</p>
+</li>
+<li><p>定期同步，避免环境中出现不符合预期的配置</p>
+</li>
+</ul>
+<h2 id="helmfile环境配置"><a href="#helmfile环境配置" class="headerlink" title="helmfile环境配置"></a>helmfile环境配置</h2><h3 id="helmfile安装"><a href="#helmfile安装" class="headerlink" title="helmfile安装"></a>helmfile安装</h3><ul>
+<li><p>archlinux系统</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pacman -S helmfile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><p>openSUSE系统</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">zypper</span> <span class="token keyword">in</span> helmfile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><p>MacOS系统</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">brew <span class="token function">install</span> helmfile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><p>Windows系统</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">scoop <span class="token function">install</span> helmfile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><p>基于镜像安装</p>
+</li>
+</ul>
+<h3 id="依赖安装"><a href="#依赖安装" class="headerlink" title="依赖安装"></a>依赖安装</h3><p>除了安装 helmfile 以外，还需要安装 helm、kubectl 以及 helm 插件 helm-diff</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">helm plugin <span class="token function">install</span> https://github.com/databus23/helm-diff<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="helmfile语法"><a href="#helmfile语法" class="headerlink" title="helmfile语法"></a>helmfile语法</h2><p>helmfile.yaml 是helmfile的核心文件，所有的配置都是基于此文件。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Chart repositories used from within this state file</span>
+<span class="token comment">#</span>
+<span class="token comment"># Use `helm-s3` and `helm-git` and whatever Helm Downloader plugins</span>
+<span class="token comment"># to use repositories other than the official repository or one backend by chartmuseum.</span>
+<span class="token key atrule">repositories</span><span class="token punctuation">:</span>
+<span class="token comment"># To use official "stable" charts a.k.a https://github.com/helm/charts/tree/master/stable</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> stable
+  <span class="token key atrule">url</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//charts.helm.sh/stable
+<span class="token comment"># To use official "incubator" charts a.k.a https://github.com/helm/charts/tree/master/incubator</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> incubator
+  <span class="token key atrule">url</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//charts.helm.sh/incubator
+<span class="token comment"># helm-git powered repository: You can treat any Git repository as a charts repository</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> polaris
+  <span class="token key atrule">url</span><span class="token punctuation">:</span> git+https<span class="token punctuation">:</span>//github.com/reactiveops/polaris@deploy/helm<span class="token punctuation">?</span>ref=master
+<span class="token comment"># Advanced configuration: You can setup basic or tls auth and optionally enable helm OCI integration</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> roboll
+  <span class="token key atrule">url</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//roboll.io/charts
+  <span class="token key atrule">certFile</span><span class="token punctuation">:</span> optional_client_cert
+  <span class="token key atrule">keyFile</span><span class="token punctuation">:</span> optional_client_key
+  <span class="token key atrule">username</span><span class="token punctuation">:</span> optional_username
+  <span class="token key atrule">password</span><span class="token punctuation">:</span> optional_password
+  <span class="token key atrule">oci</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">passCredentials</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+<span class="token comment"># Advanced configuration: You can use a ca bundle to use an https repo</span>
+<span class="token comment"># with a self-signed certificate</span>
+<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> insecure
+   <span class="token key atrule">url</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//charts.my<span class="token punctuation">-</span>insecure<span class="token punctuation">-</span>domain.com
+   <span class="token key atrule">caFile</span><span class="token punctuation">:</span> optional_ca_crt
+
+<span class="token comment"># context: kube-context # this directive is deprecated, please consider using helmDefaults.kubeContext</span>
+
+<span class="token comment"># 替代helm二进制文件的路径 (--helm-binary)</span>
+<span class="token key atrule">helmBinary</span><span class="token punctuation">:</span> path/to/helm3
+
+<span class="token comment"># Default values to set for args along with dedicated keys that can be set by contributors, cli args take precedence over these.</span>
+<span class="token comment"># In other words, unset values results in no flags passed to helm.</span>
+<span class="token comment"># See the helm usage (helm SUBCOMMAND -h) for more info on default values when those flags aren't provided.</span>
+<span class="token key atrule">helmDefaults</span><span class="token punctuation">:</span>
+  <span class="token key atrule">tillerNamespace</span><span class="token punctuation">:</span> tiller<span class="token punctuation">-</span>namespace  <span class="token comment">#dedicated default key for tiller-namespace</span>
+  <span class="token key atrule">tillerless</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>                  <span class="token comment">#dedicated default key for tillerless</span>
+  <span class="token key atrule">kubeContext</span><span class="token punctuation">:</span> kube<span class="token punctuation">-</span>context          <span class="token comment">#dedicated default key for kube-context (--kube-context)</span>
+  <span class="token key atrule">cleanupOnFail</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>               <span class="token comment">#dedicated default key for helm flag --cleanup-on-fail</span>
+  <span class="token comment"># additional and global args passed to helm (default "")</span>
+  <span class="token key atrule">args</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token string">"--set k=v"</span>
+  <span class="token comment"># verify the chart before upgrading (only works with packaged charts not directories) (default false)</span>
+  <span class="token key atrule">verify</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token comment"># wait for k8s resources via --wait. (default false)</span>
+  <span class="token key atrule">wait</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token comment"># if set and --wait enabled, will wait until all Jobs have been completed before marking the release as successful. It will wait for as long as --timeout (default false, Implemented in Helm3.5)</span>
+  <span class="token key atrule">waitForJobs</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token comment"># time in seconds to wait for any individual Kubernetes operation (like Jobs for hooks, and waits on pod/pvc/svc/deployment readiness) (default 300)</span>
+  <span class="token key atrule">timeout</span><span class="token punctuation">:</span> <span class="token number">600</span>
+  <span class="token comment"># performs pods restart for the resource if applicable (default false)</span>
+  <span class="token key atrule">recreatePods</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token comment"># forces resource update through delete/recreate if needed (default false)</span>
+  <span class="token key atrule">force</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token comment"># enable TLS for request to Tiller (default false)</span>
+  <span class="token key atrule">tls</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token comment"># path to TLS CA certificate file (default "$HELM_HOME/ca.pem")</span>
+  <span class="token key atrule">tlsCACert</span><span class="token punctuation">:</span> <span class="token string">"path/to/ca.pem"</span>
+  <span class="token comment"># path to TLS certificate file (default "$HELM_HOME/cert.pem")</span>
+  <span class="token key atrule">tlsCert</span><span class="token punctuation">:</span> <span class="token string">"path/to/cert.pem"</span>
+  <span class="token comment"># path to TLS key file (default "$HELM_HOME/key.pem")</span>
+  <span class="token key atrule">tlsKey</span><span class="token punctuation">:</span> <span class="token string">"path/to/key.pem"</span>
+  <span class="token comment"># limit the maximum number of revisions saved per release. Use 0 for no limit. (default 10)</span>
+  <span class="token key atrule">historyMax</span><span class="token punctuation">:</span> <span class="token number">10</span>
+  <span class="token comment"># when using helm 3.2+, automatically create release namespaces if they do not exist (default true)</span>
+  <span class="token key atrule">createNamespace</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token comment"># if used with charts museum allows to pull unstable charts for deployment, for example: if 1.2.3 and 1.2.4-dev versions exist and set to true, 1.2.4-dev will be pulled (default false)</span>
+  <span class="token key atrule">devel</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token comment"># When set to `true`, skips running `helm dep up` and `helm dep build` on this release's chart.</span>
+  <span class="token comment"># Useful when the chart is broken, like seen in https://github.com/roboll/helmfile/issues/1547</span>
+  <span class="token key atrule">skipDeps</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+
+<span class="token comment"># these labels will be applied to all releases in a Helmfile. Useful in templating if you have a helmfile per environment or customer and don't want to copy the same label to each release</span>
+<span class="token key atrule">commonLabels</span><span class="token punctuation">:</span>
+  <span class="token key atrule">hello</span><span class="token punctuation">:</span> world
+
+<span class="token comment"># The desired states of Helm releases.</span>
+<span class="token comment">#</span>
+<span class="token comment"># Helmfile runs various helm commands to converge the current state in the live cluster to the desired state defined here.</span>
+<span class="token key atrule">releases</span><span class="token punctuation">:</span>
+  <span class="token comment"># Published chart example</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> vault                            <span class="token comment"># name of this release</span>
+    <span class="token key atrule">namespace</span><span class="token punctuation">:</span> vault                       <span class="token comment"># target namespace</span>
+    <span class="token key atrule">createNamespace</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>                  <span class="token comment"># helm 3.2+ automatically create release namespace (default true)</span>
+    <span class="token key atrule">labels</span><span class="token punctuation">:</span>                                <span class="token comment"># Arbitrary key value pairs for filtering releases</span>
+      <span class="token key atrule">foo</span><span class="token punctuation">:</span> bar
+    <span class="token key atrule">chart</span><span class="token punctuation">:</span> roboll/vault<span class="token punctuation">-</span>secret<span class="token punctuation">-</span>manager     <span class="token comment"># the chart being installed to create this release, referenced by `repository/chart` syntax</span>
+    <span class="token key atrule">version</span><span class="token punctuation">:</span> ~1.24.1                       <span class="token comment"># the semver of the chart. range constraint is supported</span>
+    <span class="token key atrule">condition</span><span class="token punctuation">:</span> vault.enabled               <span class="token comment"># The values lookup key for filtering releases. Corresponds to the boolean value of `vault.enabled`, where `vault` is an arbitrary value</span>
+    <span class="token key atrule">missingFileHandler</span><span class="token punctuation">:</span> Warn <span class="token comment"># set to either "Error" or "Warn". "Error" instructs helmfile to fail when unable to find a values or secrets file. When "Warn", it prints the file and continues.</span>
+    <span class="token comment"># Values files used for rendering the chart</span>
+    <span class="token key atrule">values</span><span class="token punctuation">:</span>
+      <span class="token comment"># Value files passed via --values</span>
+      <span class="token punctuation">-</span> vault.yaml
+      <span class="token comment"># Inline values, passed via a temporary values file and --values, so that it doesn't suffer from type issues like --set</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">address</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//vault.example.com
+      <span class="token comment"># Go template available in inline values and values files.</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span>
+          <span class="token comment"># The end result is more or less YAML. So do `quote` to prevent number-like strings from accidentally parsed into numbers!</span>
+          <span class="token comment"># See https://github.com/roboll/helmfile/issues/608</span>
+          <span class="token key atrule">tag</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> requiredEnv "IMAGE_TAG" <span class="token punctuation">|</span> quote <span class="token punctuation">}</span><span class="token punctuation">}</span>
+          <span class="token comment"># Otherwise:</span>
+          <span class="token comment">#   tag: "{{ requiredEnv "IMAGE_TAG" }}"</span>
+          <span class="token comment">#   tag: !!string {{ requiredEnv "IMAGE_TAG" }}</span>
+        <span class="token key atrule">db</span><span class="token punctuation">:</span>
+          <span class="token key atrule">username</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> requiredEnv "DB_USERNAME" <span class="token punctuation">}</span><span class="token punctuation">}</span>
+          <span class="token comment"># value taken from environment variable. Quotes are necessary. Will throw an error if the environment variable is not set. $DB_PASSWORD needs to be set in the calling environment ex: export DB_PASSWORD='password1'</span>
+          <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> requiredEnv "DB_PASSWORD" <span class="token punctuation">}</span><span class="token punctuation">}</span>
+        <span class="token key atrule">proxy</span><span class="token punctuation">:</span>
+          <span class="token comment"># Interpolate environment variable with a fixed string</span>
+          <span class="token key atrule">domain</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> requiredEnv "PLATFORM_ID" <span class="token punctuation">}</span><span class="token punctuation">}</span>.my<span class="token punctuation">-</span>domain.com
+          <span class="token key atrule">scheme</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> env "SCHEME" <span class="token punctuation">|</span> default "https" <span class="token punctuation">}</span><span class="token punctuation">}</span>
+    <span class="token comment"># Use `values` whenever possible!</span>
+    <span class="token comment"># `set` translates to helm's `--set key=val`, that is known to suffer from type issues like https://github.com/roboll/helmfile/issues/608</span>
+    <span class="token key atrule">set</span><span class="token punctuation">:</span>
+    <span class="token comment"># single value loaded from a local file, translates to --set-file foo.config=path/to/file</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> foo.config
+      <span class="token key atrule">file</span><span class="token punctuation">:</span> path/to/file
+    <span class="token comment"># set a single array value in an array, translates to --set bar[0]={1,2}</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> bar<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+      <span class="token key atrule">values</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token number">1</span>
+      <span class="token punctuation">-</span> <span class="token number">2</span>
+    <span class="token comment"># set a templated value</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> namespace
+      <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> .Namespace <span class="token punctuation">}</span><span class="token punctuation">}</span>
+    <span class="token comment"># will attempt to decrypt it using helm-secrets plugin</span>
+    <span class="token key atrule">secrets</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> vault_secret.yaml
+    <span class="token comment"># Override helmDefaults options for verify, wait, waitForJobs, timeout, recreatePods and force.</span>
+    <span class="token key atrule">verify</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">wait</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">waitForJobs</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">timeout</span><span class="token punctuation">:</span> <span class="token number">60</span>
+    <span class="token key atrule">recreatePods</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">force</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+    <span class="token comment"># set `false` to uninstall this release on sync.  (default true)</span>
+    <span class="token key atrule">installed</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token comment"># restores previous state in case of failed release (default false)</span>
+    <span class="token key atrule">atomic</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token comment"># when true, cleans up any new resources created during a failed release (default false)</span>
+    <span class="token key atrule">cleanupOnFail</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+    <span class="token comment"># name of the tiller namespace (default "")</span>
+    <span class="token key atrule">tillerNamespace</span><span class="token punctuation">:</span> vault
+    <span class="token comment"># if true, will use the helm-tiller plugin (default false)</span>
+    <span class="token key atrule">tillerless</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+    <span class="token comment"># enable TLS for request to Tiller (default false)</span>
+    <span class="token key atrule">tls</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token comment"># path to TLS CA certificate file (default "$HELM_HOME/ca.pem")</span>
+    <span class="token key atrule">tlsCACert</span><span class="token punctuation">:</span> <span class="token string">"path/to/ca.pem"</span>
+    <span class="token comment"># path to TLS certificate file (default "$HELM_HOME/cert.pem")</span>
+    <span class="token key atrule">tlsCert</span><span class="token punctuation">:</span> <span class="token string">"path/to/cert.pem"</span>
+    <span class="token comment"># path to TLS key file (default "$HELM_HOME/key.pem")</span>
+    <span class="token key atrule">tlsKey</span><span class="token punctuation">:</span> <span class="token string">"path/to/key.pem"</span>
+    <span class="token comment"># --kube-context to be passed to helm commands</span>
+    <span class="token comment"># CAUTION: this doesn't work as expected for `tilerless: true`.</span>
+    <span class="token comment"># See https://github.com/roboll/helmfile/issues/642</span>
+    <span class="token comment"># (default "", which means the standard kubeconfig, either ~/kubeconfig or the file pointed by $KUBECONFIG environment variable)</span>
+    <span class="token key atrule">kubeContext</span><span class="token punctuation">:</span> kube<span class="token punctuation">-</span>context
+    <span class="token comment"># passes --disable-validation to helm 3 diff plugin, this requires diff plugin &gt;= 3.1.2</span>
+    <span class="token comment"># It may be helpful to deploy charts with helm api v1 CRDS</span>
+    <span class="token comment"># https://github.com/roboll/helmfile/pull/1373</span>
+    <span class="token key atrule">disableValidation</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+    <span class="token comment"># passes --disable-validation to helm 3 diff plugin, this requires diff plugin &gt;= 3.1.2</span>
+    <span class="token comment"># It is useful when any release contains custom resources for CRDs that is not yet installed onto the cluster.</span>
+    <span class="token comment"># https://github.com/roboll/helmfile/pull/1618</span>
+    <span class="token key atrule">disableValidationOnInstall</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+    <span class="token comment"># passes --disable-openapi-validation to helm 3 diff plugin, this requires diff plugin &gt;= 3.1.2</span>
+    <span class="token comment"># It may be helpful to deploy charts with helm api v1 CRDS</span>
+    <span class="token comment"># https://github.com/roboll/helmfile/pull/1373</span>
+    <span class="token key atrule">disableOpenApiValidation</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+    <span class="token comment"># limit the maximum number of revisions saved per release. Use 0 for no limit (default 10)</span>
+    <span class="token key atrule">historyMax</span><span class="token punctuation">:</span> <span class="token number">10</span>
+    <span class="token comment"># When set to `true`, skips running `helm dep up` and `helm dep build` on this release's chart.</span>
+    <span class="token comment"># Useful when the chart is broken, like seen in https://github.com/roboll/helmfile/issues/1547</span>
+    <span class="token key atrule">skipDeps</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+
+  <span class="token comment"># Local chart example</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> grafana                            <span class="token comment"># name of this release</span>
+    <span class="token key atrule">namespace</span><span class="token punctuation">:</span> another                       <span class="token comment"># target namespace</span>
+    <span class="token key atrule">chart</span><span class="token punctuation">:</span> ../my<span class="token punctuation">-</span>charts/grafana              <span class="token comment"># the chart being installed to create this release, referenced by relative path to local helmfile</span>
+    <span class="token key atrule">values</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token string">"../../my-values/grafana/values.yaml"</span>             <span class="token comment"># Values file (relative path to manifest)</span>
+    <span class="token punctuation">-</span> ./values/<span class="token punctuation">{</span><span class="token punctuation">{</span> requiredEnv "PLATFORM_ENV" <span class="token punctuation">}</span><span class="token punctuation">}</span>/config.yaml <span class="token comment"># Values file taken from path with environment variable. $PLATFORM_ENV must be set in the calling environment.</span>
+    <span class="token key atrule">wait</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+
+<span class="token comment">#</span>
+<span class="token comment"># Advanced Configuration: Nested States</span>
+<span class="token comment">#</span>
+<span class="token key atrule">helmfiles</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token comment"># Path to the helmfile state file being processed BEFORE releases in this state file</span>
+  <span class="token key atrule">path</span><span class="token punctuation">:</span> path/to/subhelmfile.yaml
+  <span class="token comment"># Label selector used for filtering releases in the nested state.</span>
+  <span class="token comment"># For example, `name=prometheus` in this context is equivalent to processing the nested state like</span>
+  <span class="token comment">#   helmfile -f path/to/subhelmfile.yaml -l name=prometheus sync</span>
+  <span class="token key atrule">selectors</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> name=prometheus
+  <span class="token comment"># Override state values</span>
+  <span class="token key atrule">values</span><span class="token punctuation">:</span>
+  <span class="token comment"># Values files merged into the nested state's values</span>
+  <span class="token punctuation">-</span> additional.values.yaml
+  <span class="token comment"># One important aspect of using values here is that they first need to be defined in the values section</span>
+  <span class="token comment"># of the origin helmfile, so in this example key1 needs to be in the values or environments.NAME.values of path/to/subhelmfile.yaml</span>
+  <span class="token comment"># Inline state values merged into the nested state's values</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">key1</span><span class="token punctuation">:</span> val1
+<span class="token punctuation">-</span> <span class="token comment"># All the nested state files under `helmfiles:` is processed in the order of definition.</span>
+  <span class="token comment"># So it can be used for preparation for your main `releases`. An example would be creating CRDs required by `releases` in the parent state file.</span>
+  <span class="token key atrule">path</span><span class="token punctuation">:</span> path/to/mycrd.helmfile.yaml
+<span class="token punctuation">-</span> <span class="token comment"># Terraform-module-like URL for importing a remote directory and use a file in it as a nested-state file</span>
+  <span class="token comment"># The nested-state file is locally checked-out along with the remote directory containing it.</span>
+  <span class="token comment"># Therefore all the local paths in the file are resolved relative to the file</span>
+  <span class="token key atrule">path</span><span class="token punctuation">:</span> git<span class="token punctuation">:</span><span class="token punctuation">:</span>https<span class="token punctuation">:</span>//github.com/cloudposse/helmfiles.git@releases/kiam.yaml<span class="token punctuation">?</span>ref=0.40.0
+<span class="token comment"># If set to "Error", return an error when a subhelmfile points to a</span>
+<span class="token comment"># non-existent path. The default behavior is to print a warning and continue.</span>
+<span class="token key atrule">missingFileHandler</span><span class="token punctuation">:</span> Error
+
+<span class="token comment">#</span>
+<span class="token comment"># Advanced Configuration: Environments</span>
+<span class="token comment">#</span>
+
+<span class="token comment"># The list of environments managed by helmfile.</span>
+<span class="token comment">#</span>
+<span class="token comment"># The default is `environments: {"default": {}}` which implies:</span>
+<span class="token comment">#</span>
+<span class="token comment"># - `{{ .Environment.Name }}` evaluates to "default"</span>
+<span class="token comment"># - `{{ .Values }}` being empty</span>
+<span class="token key atrule">environments</span><span class="token punctuation">:</span>
+  <span class="token comment"># The "default" environment is available and used when `helmfile` is run without `--environment NAME`.</span>
+  <span class="token key atrule">default</span><span class="token punctuation">:</span>
+    <span class="token comment"># Everything from the values.yaml is available via `{{ .Values.KEY }}`.</span>
+    <span class="token comment"># Suppose `{"foo": {"bar": 1}}` contained in the values.yaml below,</span>
+    <span class="token comment"># `{{ .Values.foo.bar }}` is evaluated to `1`.</span>
+    <span class="token key atrule">values</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> environments/default/values.yaml
+    <span class="token comment"># Each entry in values can be either a file path or inline values.</span>
+    <span class="token comment"># The below is an example of inline values, which is merged to the `.Values`</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">myChartVer</span><span class="token punctuation">:</span> 1.0.0<span class="token punctuation">-</span>dev
+  <span class="token comment"># Any environment other than `default` is used only when `helmfile` is run with `--environment NAME`.</span>
+  <span class="token comment"># That is, the "production" env below is used when and only when it is run like `helmfile --environment production sync`.</span>
+  <span class="token key atrule">production</span><span class="token punctuation">:</span>
+    <span class="token key atrule">values</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> environments/production/values.yaml
+    <span class="token punctuation">-</span> <span class="token key atrule">myChartVer</span><span class="token punctuation">:</span> 1.0.0
+    <span class="token comment"># disable vault release processing</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">vault</span><span class="token punctuation">:</span>
+        <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+    <span class="token comment">## `secrets.yaml` is decrypted by `helm-secrets` and available via `{{ .Environment.Values.KEY }}`</span>
+    <span class="token key atrule">secrets</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> environments/production/secrets.yaml
+    <span class="token comment"># Instructs helmfile to fail when unable to find a environment values file listed under `environments.NAME.values`.</span>
+    <span class="token comment">#</span>
+    <span class="token comment"># Possible values are  "Error", "Warn", "Info", "Debug". The default is "Error".</span>
+    <span class="token comment">#</span>
+    <span class="token comment"># Use "Warn", "Info", or "Debug" if you want helmfile to not fail when a values file is missing, while just leaving</span>
+    <span class="token comment"># a message about the missing file at the log-level.</span>
+    <span class="token key atrule">missingFileHandler</span><span class="token punctuation">:</span> Error
+    <span class="token comment"># kubeContext to use for this environment</span>
+    <span class="token key atrule">kubeContext</span><span class="token punctuation">:</span> kube<span class="token punctuation">-</span>context
+
+<span class="token comment">#</span>
+<span class="token comment"># Advanced Configuration: Layering</span>
+<span class="token comment">#</span>
+<span class="token comment"># Helmfile merges all the "base" state files and this state file before processing.</span>
+<span class="token comment">#</span>
+<span class="token comment"># Assuming this state file is named `helmfile.yaml`, all the files are merged in the order of:</span>
+<span class="token comment">#   environments.yaml &lt;- defaults.yaml &lt;- templates.yaml &lt;- helmfile.yaml</span>
+<span class="token key atrule">bases</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> environments.yaml
+<span class="token punctuation">-</span> defaults.yaml
+<span class="token punctuation">-</span> templates.yaml
+
+<span class="token comment">#</span>
+<span class="token comment"># Advanced Configuration: API Capabilities</span>
+<span class="token comment">#</span>
+<span class="token comment"># 'helmfile template' renders releases locally without querying an actual cluster,</span>
+<span class="token comment"># and in this case `.Capabilities.APIVersions` cannot be populated.</span>
+<span class="token comment"># When a chart queries for a specific CRD, this can lead to unexpected results.</span>
+<span class="token comment">#</span>
+<span class="token comment"># Configure a fixed list of api versions to pass to 'helm template' via the --api-versions flag:</span>
+<span class="token key atrule">apiVersions</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> example/v1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="helmfile命令"><a href="#helmfile命令" class="headerlink" title="helmfile命令"></a>helmfile命令</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">NAME:
+   helmfile
+
+USAGE:
+   helmfile <span class="token punctuation">[</span>global options<span class="token punctuation">]</span> <span class="token builtin class-name">command</span> <span class="token punctuation">[</span>command options<span class="token punctuation">]</span> <span class="token punctuation">[</span>arguments<span class="token punctuation">..</span>.<span class="token punctuation">]</span>
+
+VERSION:
+   v0.140.1
+
+COMMANDS:
+   deps          update charts based on their requirements
+   repos         <span class="token function">sync</span> repositories from state <span class="token function">file</span> <span class="token punctuation">(</span>helm repo <span class="token function">add</span> <span class="token operator">&amp;&amp;</span> helm repo update<span class="token punctuation">)</span>
+   charts        DEPRECATED: <span class="token function">sync</span> releases from state <span class="token function">file</span> <span class="token punctuation">(</span>helm upgrade --install<span class="token punctuation">)</span>
+   <span class="token function">diff</span>          <span class="token function">diff</span> releases from state <span class="token function">file</span> against <span class="token function">env</span> <span class="token punctuation">(</span>helm <span class="token function">diff</span><span class="token punctuation">)</span>
+   template      template releases from state <span class="token function">file</span> against <span class="token function">env</span> <span class="token punctuation">(</span>helm template<span class="token punctuation">)</span>
+   write-values  <span class="token function">write</span> values files <span class="token keyword">for</span> releases. Similar to <span class="token variable"><span class="token variable">`</span>helmfile template<span class="token variable">`</span></span>, <span class="token function">write</span> values files instead of manifests.
+   lint          lint charts from state <span class="token function">file</span> <span class="token punctuation">(</span>helm lint<span class="token punctuation">)</span>
+   fetch         fetch charts from state <span class="token function">file</span>
+   <span class="token function">sync</span>          <span class="token function">sync</span> all resources from state <span class="token function">file</span> <span class="token punctuation">(</span>repos, releases and chart deps<span class="token punctuation">)</span>
+   apply         apply all resources from state <span class="token function">file</span> only when there are changes
+   status        retrieve status of releases <span class="token keyword">in</span> state <span class="token function">file</span>
+   delete        DEPRECATED: delete releases from state <span class="token function">file</span> <span class="token punctuation">(</span>helm delete<span class="token punctuation">)</span>
+   destroy       deletes and <span class="token keyword">then</span> purges releases
+   <span class="token builtin class-name">test</span>          <span class="token builtin class-name">test</span> releases from state <span class="token function">file</span> <span class="token punctuation">(</span>helm <span class="token builtin class-name">test</span><span class="token punctuation">)</span>
+   build         output compiled helmfile state<span class="token punctuation">(</span>s<span class="token punctuation">)</span> as YAML
+   list          list releases defined <span class="token keyword">in</span> state <span class="token function">file</span>
+   version       Show the version <span class="token keyword">for</span> Helmfile.
+   help, h       Shows a list of commands or <span class="token builtin class-name">help</span> <span class="token keyword">for</span> one <span class="token builtin class-name">command</span>
+
+GLOBAL OPTIONS:
+   --helm-binary value, -b value           helm二进制文件路径 <span class="token punctuation">(</span>default: <span class="token string">"helm"</span><span class="token punctuation">)</span>
+   --file helmfile.yaml, -f helmfile.yaml  从文件或目录加载配置。默认为helmfile.yaml or <span class="token variable"><span class="token variable">`</span>helmfile.d<span class="token variable">`</span></span><span class="token punctuation">(</span>means <span class="token variable"><span class="token variable">`</span>helmfile.d/*.yaml<span class="token variable">`</span></span><span class="token punctuation">)</span> <span class="token keyword">in</span> this preference
+   --environment value, -e value           specify the environment name. defaults to <span class="token string">"default"</span>
+   --state-values-set value                <span class="token builtin class-name">set</span> state values on the <span class="token builtin class-name">command</span> line <span class="token punctuation">(</span>can specify multiple or separate values with commas: <span class="token assign-left variable">key1</span><span class="token operator">=</span>val1,key2<span class="token operator">=</span>val2<span class="token punctuation">)</span>
+   --state-values-file value               specify state values <span class="token keyword">in</span> a YAML <span class="token function">file</span>
+   --quiet, -q                             Silence output. Equivalent to log-level warn
+   --kube-context value                    Set kubectl context. Uses current context by default
+   --debug                                 Enable verbose output <span class="token keyword">for</span> Helm and <span class="token builtin class-name">set</span> log-level to debug, this disables --quiet/-q effect
+   --no-color                              Output without color
+   --log-level value                       Set log level, default info
+   --namespace value, -n value             Set namespace. Uses the namespace <span class="token builtin class-name">set</span> <span class="token keyword">in</span> the context by default, and is available <span class="token keyword">in</span> templates as <span class="token punctuation">{</span><span class="token punctuation">{</span> .Namespace <span class="token punctuation">}</span><span class="token punctuation">}</span>
+   --chart value, -c value                 Set chart. Uses the chart <span class="token builtin class-name">set</span> <span class="token keyword">in</span> release by default, and is available <span class="token keyword">in</span> template as <span class="token punctuation">{</span><span class="token punctuation">{</span> .Chart <span class="token punctuation">}</span><span class="token punctuation">}</span>
+   --selector value, -l value              Only run using the releases that match labels. Labels can take the form of <span class="token assign-left variable">foo</span><span class="token operator">=</span>bar or foo<span class="token operator">!=</span>bar.
+                                           A release must match all labels <span class="token keyword">in</span> a group <span class="token keyword">in</span> order to be used. Multiple <span class="token function">groups</span> can be specified at once.
+                                           --selector <span class="token assign-left variable">tier</span><span class="token operator">=</span>frontend,tier<span class="token operator">!=</span>proxy --selector <span class="token assign-left variable">tier</span><span class="token operator">=</span>backend. Will match all frontend, non-proxy releases AND all backend releases.
+                                           The name of a release can be used as a label. --selector <span class="token assign-left variable">name</span><span class="token operator">=</span>myrelease
+   --allow-no-matching-release             Do not <span class="token builtin class-name">exit</span> with an error code <span class="token keyword">if</span> the provided selector has no matching releases.
+   --interactive, -i                       Request confirmation before attempting to modify clusters
+   --help, -h                              show <span class="token builtin class-name">help</span>
+   --version, -v                           print the version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">ender viggin</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://blog.evcoder.com/2021/10/19/helm/helmfile/helm-guan-li-helmfile/">https://blog.evcoder.com/2021/10/19/helm/helmfile/helm-guan-li-helmfile/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">ender viggin</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/helmfile/">
+                                    <span class="chip bg-color">helmfile</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/10/19/python/django/web-kuang-jia-django/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Django">
+                        
+                        <span class="card-title">Django</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Django
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/web%E6%A1%86%E6%9E%B6/" class="post-category">
+                                    web框架
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/Django/">
+                        <span class="chip bg-color">Django</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/19/json/shu-ju-jiao-huan-ge-shi-json/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Json">
+                        
+                        <span class="card-title">Json</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Json
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2%E6%A0%BC%E5%BC%8F/" class="post-category">
+                                    数据交换格式
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/json/">
+                        <span class="chip bg-color">json</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">126k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,1810 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="EvBlog">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>EvBlog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="EvBlog" type="application/atom+xml">
+</head>
+
+
+
+   <style>
+    body{
+       background-image: url(/medias/background.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">EvBlog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">EvBlog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('Please enter the password to access this article')).toString(CryptoJS.enc.Hex)) {
+                alert('password error, will return home page页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title"></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-12-24
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-12-24
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    7.2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    27 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="gitlabci"><a href="#gitlabci" class="headerlink" title="gitlabci"></a>gitlabci</h1><h2 id="gitlab-ci简介"><a href="#gitlab-ci简介" class="headerlink" title="gitlab ci简介"></a>gitlab ci简介</h2><ul>
+<li>GitLab提交持续集成服务，当你在项目根目录中添加 <code>.gitlab-ci.yml</code> 文件，并配置项目的运行器( <code>GitLab Runner</code> )，那么后续的每次提交都会触发CI流水线( <code>pipeline</code> )的执行。</li>
+<li>Job作业是 <code>.gitlab-ci.yml</code> 文件的基本元素，每个作业至少有 <code>script</code> 子句，在流水线中可以定义任意多个作业。</li>
+<li>每个作业必须具有唯一的名称，但有一些保留的关键字不能用作作业名称</li>
+<li>在流水线脚本中可以使用预定义的全局变量</li>
+</ul>
+<h2 id="gitlabci语法"><a href="#gitlabci语法" class="headerlink" title="gitlabci语法"></a>gitlabci语法</h2><h3 id="gitlab保留字"><a href="#gitlab保留字" class="headerlink" title="gitlab保留字"></a>gitlab保留字</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">image
+services
+stages
+types
+before_script
+after_script
+variables
+cache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="配置参数"><a href="#配置参数" class="headerlink" title="配置参数"></a>配置参数</h3><p>定义 job 行为的参数列表</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>script</td>
+<td>由运行程序执行的 shell 脚本。</td>
+</tr>
+<tr>
+<td>image</td>
+<td>使用 Docker镜像。还提供：image:name 和 image:entrypoint。</td>
+</tr>
+<tr>
+<td>services</td>
+<td>使用 Docker 服务镜像。还提供：services:name、services:alias、services:entrypoint 和 services:command。</td>
+</tr>
+<tr>
+<td>before_script</td>
+<td>重写在 job 之前执行的一组命令。</td>
+</tr>
+<tr>
+<td>after_script</td>
+<td>重写在 job 后执行的一组命令。</td>
+</tr>
+<tr>
+<td>stages</td>
+<td>定义管道中的阶段。</td>
+</tr>
+<tr>
+<td>stage</td>
+<td>定义 job 阶段（default: test）。</td>
+</tr>
+<tr>
+<td>only</td>
+<td>限制创建 when jobs。还可用：only：refs，only：kubernetes，only：variables，only：changes。</td>
+</tr>
+<tr>
+<td>except</td>
+<td>限制未创建 when jobs。还可用：except:refs，except:kubernetes，except:variables 和 except:changes。</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>用于选择运行程序的标记列表。</td>
+</tr>
+<tr>
+<td>allow_failure</td>
+<td>允许 job 失败。失败的 job 不影响提交状态。</td>
+</tr>
+<tr>
+<td>when</td>
+<td>何时运行 job。还可用：when:manual and when:delayed。</td>
+</tr>
+<tr>
+<td>environment</td>
+<td>job 部署到的环境的名称。还可用：environment:name, environment:url, environment:on_stop, and environment:action.</td>
+</tr>
+<tr>
+<td>cache</td>
+<td>在后续运行之间应缓存的文件列表。还可用：cache:paths, cache:key, cache:untracked, and cache:policy.。</td>
+</tr>
+<tr>
+<td>artifacts</td>
+<td>成功时要附加到 job 的文件和目录列表。还可用：artifacts:paths, artifacts:name, artifacts:untracked, artifacts:when, artifacts:expire_in, artifacts:reports, and artifacts:reports:junit。在 Gitlab 企业版中，这些可用：artifacts:reports:codequality, artifacts:reports:sast, artifacts:reports:dependency_scanning, artifacts:reports:container_scanning, artifacts:reports:dast, artifacts:reports:license_management, artifacts:reports:performance and artifacts:reports:metrics。</td>
+</tr>
+<tr>
+<td>dependencies</td>
+<td>job 所依赖的其他 job，以便在它们之间传递 artifacts。</td>
+</tr>
+<tr>
+<td>coverage</td>
+<td>给定 job 的代码覆盖率设置。</td>
+</tr>
+<tr>
+<td>retry</td>
+<td>如果出现故障，一个 job 可以自动重试的时间和次数。</td>
+</tr>
+<tr>
+<td>parallel</td>
+<td>一个 job 应并行运行多少个实例。</td>
+</tr>
+<tr>
+<td>trigger</td>
+<td>定义下游管道触发器。</td>
+</tr>
+<tr>
+<td>include</td>
+<td>允许此 job 包含外部 yaml 文件。还提供：include:local、include:file、include:template 和 include:remote。</td>
+</tr>
+<tr>
+<td>extends</td>
+<td>此 job 将从中继承的配置项。</td>
+</tr>
+<tr>
+<td>pages</td>
+<td>上载 job 的结果以用于 Gitlab 页面。</td>
+</tr>
+<tr>
+<td>variables</td>
+<td>在 job 级别定义 job 变量。</td>
+</tr>
+</tbody></table>
+<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><p>某些参数可以全局设置为所有 job 的默认值，使用默认值：关键字。然后，默认参数可以被特定于 job 的参数覆盖配置。</p>
+<p>可以在默认块内定义以下 job 参数：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">image
+services
+before_script
+after_script
+cache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 默认块</span>
+<span class="token key atrule">default</span><span class="token punctuation">:</span>
+  <span class="token key atrule">image</span><span class="token punctuation">:</span> ruby<span class="token punctuation">:</span><span class="token number">2.5</span>
+
+<span class="token key atrule">rspec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> bundle exec rspec
+
+<span class="token key atrule">rspec 2.6</span><span class="token punctuation">:</span>
+  <span class="token key atrule">image</span><span class="token punctuation">:</span> ruby<span class="token punctuation">:</span><span class="token number">2.6</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> bundle exec rspec<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="参数详解"><a href="#参数详解" class="headerlink" title="参数详解"></a>参数详解</h3><h4 id="script"><a href="#script" class="headerlink" title="script"></a><strong>script</strong></h4><p><code>script</code> 是作业中唯一必须的关键字参数，是运行器需要执行的脚本</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> echo "hello world"
+<span class="token key atrule">build</span><span class="token punctuation">:</span>
+	<span class="token key atrule">script</span><span class="token punctuation">:</span> <span class="token comment"># 使用数组的多个命令</span>
+		<span class="token punctuation">-</span> echo "hello world"
+		<span class="token punctuation">-</span> uname <span class="token punctuation">-</span>a<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>注意：使用冒号时应使用引号包裹起来(yaml 解析器知道将整个事件解释为字符串而不是 “key:value” 对。)，使用特殊字符时需要特别注意！</p>
+<p>注意如果要输出冒号字符，冒号后面不能紧接空格！</p>
+</blockquote>
+<h4 id="image"><a href="#image" class="headerlink" title="image"></a><strong>image</strong></h4><p><code>image</code> 指定使用Docker镜像</p>
+<ul>
+<li>name 名称，如果只有一个名字，可以省略</li>
+<li>entrypoint docker拉取后执行的命令</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">image</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">"registry.example.com/my/image:latest"</span>
+  
+<span class="token key atrule">image</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> super/sql<span class="token punctuation">:</span>experimental
+  <span class="token key atrule">entrypoint</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"/bin/sh"</span><span class="token punctuation">,</span> <span class="token string">"-c"</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="services"><a href="#services" class="headerlink" title="services"></a><strong>services</strong></h4><p><code>services</code> 指定使用Docker镜像服务</p>
+<ul>
+<li>alias 服务别名</li>
+<li>name 名称，如果只有一个名字，可以省略</li>
+<li>entrypoint 拉取镜像启动容器后，要执行的命令</li>
+<li>command 要执行的命令</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>postgres<span class="token punctuation">:</span><span class="token number">11.7</span>
+    <span class="token key atrule">alias</span><span class="token punctuation">:</span> db<span class="token punctuation">-</span>postgres
+    <span class="token key atrule">entrypoint</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"/usr/local/bin/db-postgres"</span><span class="token punctuation">]</span>
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"start"</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="before-script"><a href="#before-script" class="headerlink" title="before_script"></a><strong>before_script</strong></h4><p><code>before_script</code> 用于定义在所有作业之前需要执行的命令</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">before_script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> echo "Before script section"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="after-script"><a href="#after-script" class="headerlink" title="after_script"></a><strong>after_script</strong></h4><p><code>after_script</code> 用于定义在所有作业(即使失败)之后需要执行的命令</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">after_script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> echo "After script section"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><strong>特点：</strong></p>
+<ul>
+<li>before_script和script在一个上下文中是串行执行的，after_script是独立执行的，即after_script与before_script/script的上下文环境不同。</li>
+<li>after_script会将当前工作目录设置为默认值。</li>
+<li>在after_script中无法看到在before_script和script中所做的修改：<ul>
+<li>在before_script和script中的命名别名、导出变量，对after_script不可见</li>
+<li>before_script和script在工作树之外安装的软件，对after_script不可见</li>
+</ul>
+</li>
+<li>你可以在作业中定义before_script，after_script，也可以将其定义为顶级元素，定义为顶级元素将为每一个任务都执行相应阶段的脚本或命令。<strong>作业级会覆盖全局级的定义。</strong></li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">before_script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> echo "Before script section"
+<span class="token key atrule">after_script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> echo "After script section"
+<span class="token key atrule">build1</span><span class="token punctuation">:</span>
+	<span class="token key atrule">stage</span><span class="token punctuation">:</span> build
+	<span class="token key atrule">before_script</span><span class="token punctuation">:</span> 
+		<span class="token punctuation">-</span> yum install cloc <span class="token punctuation">-</span>y
+	<span class="token key atrule">after_script</span><span class="token punctuation">:</span>
+	  <span class="token punctuation">-</span> cloc <span class="token punctuation">-</span><span class="token punctuation">-</span>version
+	<span class="token key atrule">script</span><span class="token punctuation">:</span>
+	  <span class="token punctuation">-</span> cloc <span class="token punctuation">-</span><span class="token punctuation">-</span>version
+	<span class="token key atrule">tags</span><span class="token punctuation">:</span>
+	  <span class="token punctuation">-</span> bluelog<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="stages"><a href="#stages" class="headerlink" title="stages"></a><strong>stages</strong></h4><p><code>stages</code> 定义流水线全局可使用的阶段，阶段允许有灵活的多级管道，<strong>阶段元素的排序定义了作业执行的顺序</strong></p>
+<ul>
+<li>相同 <code>stage</code> 阶段的作业并行运行</li>
+<li>默认情况下，上一阶段的作业全部运行成功后才执行下一阶段的作业</li>
+<li>默认有三个阶段， <code>build</code> 、<code>test</code> 、<code>deploy</code> 三个阶段</li>
+<li>如果一个作业未定义 <code>stage</code> 阶段，则作业使用 <code>test</code> 测试阶段</li>
+<li>默认情况下，任何一个前置的作业失败了，commit提交会标记为failed并且下一个stages的作业都不会执行</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">stages</span><span class="token punctuation">:</span>
+	<span class="token punctuation">-</span> build
+	<span class="token punctuation">-</span> test
+	<span class="token punctuation">-</span> build_image
+	<span class="token punctuation">-</span> deploy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="stage"><a href="#stage" class="headerlink" title="stage"></a><strong>stage</strong></h4><p><code>stage</code> 定义流水线中每个作业所处的阶段，处于相同阶段的作业并行执行</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">Build Image</span><span class="token punctuation">:</span>
+	<span class="token key atrule">stage</span><span class="token punctuation">:</span> build_image
+	<span class="token key atrule">script</span><span class="token punctuation">:</span>
+	  <span class="token punctuation">-</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>默认情况下，GitLab Runner运行器每次只执行一个作业，只有当满足以下条件之一时，才会真正的并行执行:</p>
+<ul>
+<li>作业运行在不同的运行器上；</li>
+<li>你修改了运行器的 <code>concurrent</code> 设置，默认情况下 <code>concurrent = 1</code> 。</li>
+</ul>
+</blockquote>
+<h4 id="only-except"><a href="#only-except" class="headerlink" title="only/except"></a><strong>only/except</strong></h4><p><code>only</code> 和 <code>except</code> 用于在创建作业时对作业的限制策略。</p>
+<ul>
+<li><code>only</code> 定义了哪些分支或标签(branches and tags)的作业会运行,其默认为 <code>only: ['branches', 'tags']</code></li>
+<li><code>except</code> 定义了哪些分支或标签(branches and tags)的作业不会运行,默认 <code>except</code> 规则为空</li>
+</ul>
+<p><strong>策略规则：</strong></p>
+<ul>
+<li><code>only</code> 和 <code>except</code> 可同时使用，如果在一个作业中同时定义了 <code>only</code> 和 <code>except</code> ，则同时 <code>only</code> <code>except</code> 进行过滤(注意，不是忽略 <code>except</code> 条件) 。</li>
+<li><code>only</code> 和 <code>except</code> 可以使用正则表达式。</li>
+<li><code>only</code> 和 <code>except</code> 允许指定用于过滤forks作业的存储库路径。</li>
+<li><code>only</code> 和 <code>except</code> 中可以使用特殊的关键字</li>
+</ul>
+<p><strong><code>only</code> 和 <code>except</code> 中可以使用特殊的关键字</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>描述释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>branches</td>
+<td>当一个分支被push上来</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>当一个打了tag标记的Release被提交时</td>
+</tr>
+<tr>
+<td>api</td>
+<td>当一个pipline被第二个piplines api所触发调起(不是触发器API)</td>
+</tr>
+<tr>
+<td>external</td>
+<td>当使用了GitLab以外的外部CI服务，如Jenkins</td>
+</tr>
+<tr>
+<td>pipelines</td>
+<td>针对多项目触发器而言，当使用CI_JOB_TOKEN， 并使用gitlab所提供的api创建多个pipelines的时候</td>
+</tr>
+<tr>
+<td>pushes</td>
+<td>当pipeline被用户的git push操作所触发的时候</td>
+</tr>
+<tr>
+<td>schedules</td>
+<td>针对预定好的pipline计划而言（每日构建一类）</td>
+</tr>
+<tr>
+<td>triggers</td>
+<td>用触发器token创建piplines的时候</td>
+</tr>
+<tr>
+<td>web</td>
+<td>在GitLab WEB页面上Pipelines标签页下，按下run pipline的时候</td>
+</tr>
+<tr>
+<td>merge_requests</td>
+<td>当合并请求创建或更新的时候</td>
+</tr>
+<tr>
+<td>chats</td>
+<td>当使用GitLab ChatOps 创建作业的时候</td>
+</tr>
+</tbody></table>
+<p><strong>使用示例：</strong></p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># job将只会运行以 issue- 开始的refs(分支)，然而except中指定分支不能执行，</span>
+<span class="token comment"># 所以这个job将不会执行</span>
+<span class="token key atrule">job</span><span class="token punctuation">:</span>
+	<span class="token key atrule">only</span><span class="token punctuation">:</span>
+	  <span class="token punctuation">-</span> /^issue<span class="token punctuation">-</span>.<span class="token important">*$/</span>
+	<span class="token key atrule">except</span><span class="token punctuation">:</span>
+	  <span class="token punctuation">-</span> branches
+
+<span class="token comment"># 匹配模式默认是大小写敏感的(case-sensitive)，使用 i 标志，</span>
+<span class="token comment"># 如 /pattern/i 可以使匹配模式大小写不敏感</span>
+<span class="token key atrule">job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> /^issue<span class="token punctuation">-</span>.<span class="token important">*$/i</span>
+  <span class="token key atrule">except</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> branches
+<span class="token comment"># 仅当指定标记的tags的refs引用，或者通过API触发器的构建、或者流水线计划调度的构建才会运行</span>
+<span class="token key atrule">job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> tags
+    <span class="token punctuation">-</span> triggers
+    <span class="token punctuation">-</span> schedules
+<span class="token comment"># 仓库的路径(repository path)只能用于父级仓库执行作业，不能用于forks</span>
+<span class="token comment"># 将会在所有分支执行，但 不会在 master主干以及以release/开头的分支上执行</span>
+<span class="token key atrule">job</span><span class="token punctuation">:</span>
+	<span class="token key atrule">only</span><span class="token punctuation">:</span>
+	  <span class="token punctuation">-</span> branches@gitlab<span class="token punctuation">-</span>org/gitlab<span class="token punctuation">-</span>ce
+	<span class="token key atrule">except</span><span class="token punctuation">:</span>
+	  <span class="token punctuation">-</span> master@gitlab<span class="token punctuation">-</span>org/gitlab<span class="token punctuation">-</span>ce
+	  <span class="token punctuation">-</span> /^release/.<span class="token important">*$/@gitlab-org/gitlab-ce</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>正则表达式使用的说明:</strong></p>
+<ul>
+<li>因为 <code>@</code> 用于表示ref的存储库路径的开头，所以在正则表达式中匹配包含 <code>@</code> 字符的ref名称需要使用十六进制字符代码 <code>\x40</code> 。</li>
+<li>仅标签和分支名称才能使用正则表达式匹配，仓库路径按字面意义匹配</li>
+<li>如果使用正则表达式匹配标签或分支名称，则匹配模式的整个引用部分都是正则表达式</li>
+<li>正则表达式必须以 <code>/</code> 开头和结尾，即 <code>/regular expressions/</code> ，因此， <code>issue-/.*/</code> 不会匹配以 <code>issue-</code> 开头的标签或分支。</li>
+<li>可以在正则表达式中使用锚点 <code>^$</code> ，用来匹配开头或结尾，如 <code>/^issue-.*$/</code> 与 <code>/^issue-/</code> 等价， 但 <code>/issue/</code> 却可以匹配名称为 <code>severe-issues</code> 的分支，所以正则表达式的使用要谨慎！</li>
+</ul>
+<p><strong><code>only</code> 和 <code>except</code> 高级用法</strong></p>
+<ul>
+<li><p><code>only</code> 和 <code>except</code> 支持高级策略，<code>refs</code> 、 <code>variables</code> 、 <code>changes</code> 、 <code>kubernetes</code> 四个关键字可以使用。</p>
+</li>
+<li><p>如果同时使用多个关键字，中间的逻辑是 <code>逻辑与AND</code> 。</p>
+</li>
+<li><p>refs 策略可以使用 only 和 except 基本用法中的关键字</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># only:refs/except:refs</span>
+<span class="token key atrule">deploy</span><span class="token punctuation">:</span> <span class="token comment"># deploy作业仅当流水线是计划作业或者在master主干运行</span>
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> master
+      <span class="token punctuation">-</span> schedules<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><code>kubernetes</code> 策略仅支持 <code>active</code> 关键字</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># only:kubernetes/except:kubernetes</span>
+<span class="token key atrule">deploy</span><span class="token punctuation">:</span> <span class="token comment"># deploy作业仅当kubernetes服务启动后才会运行</span>
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">kubernetes</span><span class="token punctuation">:</span> active<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><code>variables</code> 关键字用来定义变量表达式，你可以使用预定义变量、项目、组、环境变量来评估一个作业是否需要创建或运行。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># pnly:varaibles/except:varaibles</span>
+<span class="token key atrule">deploy</span><span class="token punctuation">:</span> <span class="token comment"># 使用了变量表达式</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> cap staging deploy
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> branches
+    <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> $RELEASE == "staging"
+      <span class="token punctuation">-</span> $STAGING
+<span class="token key atrule">end-to-end</span><span class="token punctuation">:</span> <span class="token comment"># 根据提交日志信息来排除某些作业</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> rake test<span class="token punctuation">:</span>end<span class="token punctuation">-</span>to<span class="token punctuation">-</span>end
+  <span class="token key atrule">except</span><span class="token punctuation">:</span>
+    <span class="token key atrule">variables</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> $CI_COMMIT_MESSAGE =~ /skip<span class="token punctuation">-</span>end<span class="token punctuation">-</span>to<span class="token punctuation">-</span>end<span class="token punctuation">-</span>tests/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><code>changes</code> 策略表明一个作业只有在使用 <code>git push</code> 事件使文件发生变化时执行。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># only:changes/except:changes</span>
+<span class="token key atrule">docker build</span><span class="token punctuation">:</span> <span class="token comment"># deploy作业仅当流水线是计划作业或者在master主干运行</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> docker build <span class="token punctuation">-</span>t my<span class="token punctuation">-</span>image<span class="token punctuation">:</span>$CI_COMMIT_REF_SLUG .
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">changes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> Dockerfile
+      <span class="token punctuation">-</span> docker/scripts/*
+      <span class="token punctuation">-</span> dockerfiles/<span class="token important">**/*</span>
+      <span class="token punctuation">-</span> more_scripts/<span class="token important">*.</span><span class="token punctuation">{</span>rb<span class="token punctuation">,</span>py<span class="token punctuation">,</span>sh<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>使用 <code>glob模式匹配</code> 来匹配根目录下的文件，或者任何目录下的文件。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">test</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> npm run test
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">changes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"*.json"</span>
+      <span class="token punctuation">-</span> <span class="token string">"**/*.sql"</span>
+<span class="token comment"># 当md文件发生变化时，会忽略CI作业</span>
+<span class="token key atrule">build</span><span class="token punctuation">:</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> npm run build
+  <span class="token key atrule">except</span><span class="token punctuation">:</span>
+    <span class="token key atrule">changes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"*.md"</span>
+<span class="token comment"># 合并请求中修改了 Dockerfile 文件或者修改了 service 目录下的文件，都会触发Docker构建。      </span>
+<span class="token key atrule">docker build service one</span><span class="token punctuation">:</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> docker build <span class="token punctuation">-</span>t my<span class="token punctuation">-</span>service<span class="token punctuation">-</span>one<span class="token punctuation">-</span>image<span class="token punctuation">:</span>$CI_COMMIT_REF_SLUG .
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token key atrule">refs</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> merge_requests
+    <span class="token key atrule">changes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> Dockerfile
+      <span class="token punctuation">-</span> service<span class="token punctuation">-</span>one/<span class="token important">**/*</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p><code>glob模式匹配</code> 的字符串需要使用双引号包裹起来，否则会导致 <code>.gitlab-ci.yml</code> 解析错误。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="tags"><a href="#tags" class="headerlink" title="tags"></a><strong>tags</strong></h4><p><code>tags</code> 关键字用于指定 <code>GitLab Runner</code> 运行器使用哪一个运行器来执行作业。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 只有运行器注册时定义了 ruby 和 postgres 两个标签的运行器才能执行作业</span>
+<span class="token key atrule">job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">tags</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> ruby
+    <span class="token punctuation">-</span> postgres<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="allow-failure"><a href="#allow-failure" class="headerlink" title="allow_failure"></a><strong>allow_failure</strong></h4><ul>
+<li><code>allow_failure</code> 可以用于当你想设置一个作业失败的之后并不影响后续的CI组件的时候。失败的作业不会影响到commit提交状态。</li>
+<li>如果允许失败的作业失败了，则相应的作业会显示一个黄色的警告，但对流水线成功与否不产生影响。</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">job1</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> test
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> execute_script_that_will_fail
+  <span class="token key atrule">allow_failure</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+
+<span class="token key atrule">job2</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> test
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> execute_script_that_will_succeed
+
+<span class="token key atrule">job3</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> deploy_to_staging<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="when"><a href="#when" class="headerlink" title="when"></a><strong>when</strong></h4><p><code>when</code> 关键字用于实现在作业失败时或发生故障时运行的作业</p>
+<p><strong><code>when</code>可以设置的值：</strong></p>
+<ul>
+<li><code>on_success</code> ：只有前面的阶段的所有作业都成功时才执行，这是默认值。</li>
+<li><code>on_failure</code> ：当前面阶段的作业至少有一个失败时才执行。</li>
+<li><code>always</code> : 无论前面的作业是否成功，一直执行本作业。</li>
+<li><code>manual</code> ：手动执行作业，作业不会自动执行，需要人工手动点击启动作业。</li>
+<li><code>delayed</code> : 延迟执行作业，配合 <code>start_in</code> 关键字一起作用， <code>start_in</code> 设置的值必须小于或等于1小时，<code>start_in</code> 设置的值示例： <code>10 seconds</code> 、 <code>30 minutes</code> 、 <code>1 hour</code> ，前面的作业结束时计时器马上开始计时。</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 延时处理</span>
+<span class="token key atrule">timed rollout 10%</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> echo 'Rolling out 10% <span class="token punctuation">...</span>'
+  <span class="token key atrule">when</span><span class="token punctuation">:</span> delayed
+  <span class="token key atrule">start_in</span><span class="token punctuation">:</span> 30 minutes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="environment"><a href="#environment" class="headerlink" title="environment"></a><strong>environment</strong></h4><p><code>environment</code> 用于定义作业部署到特殊的环境中。如果指定了 <code>environment</code> ，并且在 <code>运维</code> –&gt; <code>环境</code> 界面的环境列表中没有该名称下的环境，则会自动创建新环境。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">deploy to production</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> git push production HEAD<span class="token punctuation">:</span>master
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> production<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p><code>environment:name</code></p>
+<ul>
+<li>推荐使用 <code>name</code> 关键字来定义环境的名称</li>
+<li><code>name</code> 关键字的参数可以使用任何定义的CI变量，包括预定义的变量、安全变量、以及 <code>.gitlab-ci.yml</code> 配置文件中定义的变量，但不能使用 <code>script</code> 中定义的变量(因为这里面的变量是局部变量)。</li>
+<li><code>environment</code> 环境的名称可以包含：英文字母(letters)、数字(digits)、空格(space)、_、/、$、{、}等。</li>
+</ul>
+</li>
+<li><p><code>environment:url</code></p>
+<ul>
+<li><code>environment:url</code> 是可选的，用于设置环境的URL地址的按钮，通过点击按钮可以访问环境相应的URL地址。</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 如果作业都成功完成，那么会在 评审请求 和 环境部署 页面创建一个Button按钮，</span>
+<span class="token comment"># 你点击 打开运行中的环境 按钮就可以访问环境对应的URL地址 https://prod.example.com 。</span>
+<span class="token key atrule">deploy to production</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> git push production HEAD<span class="token punctuation">:</span>master
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> production
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//prod.example.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><code>environment:on_stop和environment:action</code></p>
+<ul>
+<li><code>environment:on_stop</code> 与 <code>environment:action</code> 配合使用。</li>
+<li>可以通过 <code>environment:on_stop</code> 关键字定义一个关闭(停止)环境的作业。</li>
+<li><code>action</code> 关键字在关闭环境的作业中定义。</li>
+</ul>
+</li>
+<li><p>动态环境</p>
+<p>在环境的名称中使用变量，在 <code>environment:name</code> 和 <code>environment:url</code> 中使用变量，则可以达到动态环境的目的，动态环境需要底层应用的支持。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">deploy as review app</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> make deploy
+  <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> review/$<span class="token punctuation">{</span>CI_COMMIT_REF_NAME<span class="token punctuation">}</span>
+    <span class="token key atrule">url</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//$<span class="token punctuation">{</span>CI_ENVIRONMENT_SLUG<span class="token punctuation">}</span>.example.com/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h4 id="cache"><a href="#cache" class="headerlink" title="cache"></a><strong>cache</strong></h4><ul>
+<li>可以在全局设置或者每个作业中设置。</li>
+<li>可以在不同的的流水线或作业之间共享数据。</li>
+<li>在 <code>artifacts</code> 工件之前恢复缓存。</li>
+<li><code>cache</code> 缓存机制用于指定一系列的文件或文件夹在不同的流水线或作业之间共享数据，仅能使用项目工作空间( <code>project workspace</code> )中的路径作为缓存的路径。</li>
+<li>如果 <code>cache</code> 配置的路径是作业工作空间外部，则说明配置是全局的缓存，所有作业共享。</li>
+</ul>
+<h4 id="artifacts"><a href="#artifacts" class="headerlink" title="artifacts"></a><strong>artifacts</strong></h4><ul>
+<li><p><code>artifacts</code> 用于指定在作业成功、失败、或者一直等状态下时，一系列的文件或文件夹附加到作业中。</p>
+</li>
+<li><p>作业完成后，工件被发送到GitLab，可以在GitLab Web界面下载。</p>
+</li>
+<li><p>默认情况下，只有成功的作业才会生成工件。</p>
+</li>
+<li><p>并不是所有的 <code>executor</code> 执行器都支持工件。</p>
+</li>
+<li><p><code>artifacts:paths</code> 用于指定哪些文件或文件夹会被打包成工件，仅仅项目工作空间( <code>project workspace</code> )的路径可以使用。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 将目录 binaries/ 和文件 .config 打包成工件</span>
+<span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+  <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> binaries/
+    <span class="token punctuation">-</span> .config
+<span class="token comment"># 要禁用工件传递，请使用空依赖关系定义作业</span>
+<span class="token key atrule">job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> build
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> make build
+  <span class="token key atrule">dependencies</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token comment"># 仅为打标记的release发布版本创建工作，这样可以避免临时构建产生大量的存储需求</span>
+<span class="token key atrule">default-job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> mvn test <span class="token punctuation">-</span>U
+  <span class="token key atrule">except</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> tags
+
+<span class="token key atrule">release-job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> mvn package <span class="token punctuation">-</span>U
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> target/<span class="token important">*.war</span>
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> tags<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>工件的默认名称是 <code>artifacts</code> ，当下载时名称是 <code>artifacts.zip</code></p>
+</li>
+<li><p>通过 <code>artifacts:name</code> 关键字可以自定义工件的归档名称，这样你可以为每个工件设置独一无二的名称，归档名称可以使用预定义的变量。</p>
+</li>
+<li><p>如果分支名称中包含斜杠(比如 <code>feature/my-feature</code> )，推荐使用 <code>$CI_COMMIT_REF_SLUG</code> 代替 <code>$CI_COMMIT_REF_NAME</code> 作为工件名称。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 使用作业名称使用工件名称</span>
+<span class="token key atrule">job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">"$CI_JOB_NAME"</span>
+    <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> binaries/
+<span class="token comment"># 使用当前分支或tag版本标签名作为工件名称</span>
+<span class="token key atrule">job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">"$CI_COMMIT_REF_NAME"</span>
+    <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> binaries/
+<span class="token comment"># 使用当前作业名称以及当前分支或tag版本标签名作为工件名称</span>
+<span class="token key atrule">job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">"$CI_JOB_NAME-$CI_COMMIT_REF_NAME"</span>
+    <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> binaries/
+<span class="token comment"># 同时使用当前作业阶段名称以及当前分支名称作为工件名称</span>
+<span class="token key atrule">job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">"$CI_JOB_STAGE-$CI_COMMIT_REF_NAME"</span>
+    <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> binaries/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><code>artifacts:untracked</code> 用于将git未加入版本库的文件作为工件文件。</p>
+</li>
+<li><p><code>artifacts:untracked</code> 将会忽略配置文件 <code>.gitignore</code>。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 将所有的未跟踪文件打包成工件</span>
+<span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+  <span class="token key atrule">untracked</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+<span class="token comment"># 将所有的未跟踪文件以及目录 binaries 中文件打包成工件</span>
+<span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+  <span class="token key atrule">untracked</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> binaries/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><code>artifacts:when</code> 用于在作业失败时或者忽略失败时上传工件。</p>
+<p><strong>可用值：</strong></p>
+<ul>
+<li><code>on_success</code> ，默认值，当作业成功上传工件。</li>
+<li><code>on_failure</code> ，当作业失败上传工件。</li>
+<li><code>always</code> ，无论作业是否成功一直上传工件。</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">when</span><span class="token punctuation">:</span> on_failure<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li><p><code>artifacts:expire_in</code> 用于设置工件的过期时间。</p>
+</li>
+<li><p>你可以点击界面上的 <code>Keep</code> 保持按钮，永久保存工件。</p>
+</li>
+<li><p>工件到期后，默认情况下每小时删除一次工件(通过cron作业)，并且后续不能再访问该工件。</p>
+</li>
+<li><p>工件默认有效期是30天，可以通过 <code>Admin area</code> –&gt; <code>Settings</code> –&gt; <code>Continuous Integration and Deployment</code> 设置默认的有效性时间。</p>
+</li>
+<li><p>如果你不提供时间单位的话，工作有效性的时间是以秒为单位的时间</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 时间示例</span>
+<span class="token comment"># ‘42’</span>
+<span class="token comment"># ‘3 mins 4 sec’</span>
+<span class="token comment"># ‘2 hrs 20 min’</span>
+<span class="token comment"># ‘2h20min’</span>
+<span class="token comment"># ‘6 mos 1 day’</span>
+<span class="token comment"># ‘47 yrs 6 mos and 4d’</span>
+<span class="token comment"># ‘3 weeks and 2 days’</span>
+<span class="token key atrule">job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">expire_in</span><span class="token punctuation">:</span> 1 week<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><code>artifacts:reports</code> 用于收集测试报告(report)，并在GitLab UI界面中显示出来。</p>
+</li>
+<li><p>无论作业是否成功，都会收集测试报告。</p>
+</li>
+<li><p>可以通过设置工件的打包路径 <code>artifacts:paths</code> 添加测试的报告输出文件。</p>
+</li>
+<li><p><code>artifacts:reports:junit</code> 可以用来收集单元测试的报告</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">rspec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> test
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> bundle install
+  <span class="token punctuation">-</span> rspec <span class="token punctuation">-</span><span class="token punctuation">-</span>format RspecJunitFormatter <span class="token punctuation">-</span><span class="token punctuation">-</span>out rspec.xml
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">reports</span><span class="token punctuation">:</span>
+      <span class="token key atrule">junit</span><span class="token punctuation">:</span> rspec.xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>如果你的测试报告是多个XML文件，你可以在一个作业中指定多个单元测试报告，GitLab会自动将他们转换成一个文件，可以像下面这样表示报告的路径:</p>
+<ul>
+<li>文件匹配模式: <code>junit: rspec-*.xml</code></li>
+<li>文件列表: <code>junit: [rspec-1.xml, rspec-2.xml, rspec-3.xml]</code></li>
+<li>混合模式：<code>junit: [rspec.xml, test-results/TEST-*.xml]</code></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">golang</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> test
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> go get <span class="token punctuation">-</span>u github.com/jstemmer/go<span class="token punctuation">-</span>junit<span class="token punctuation">-</span>report
+  <span class="token punctuation">-</span> go test <span class="token punctuation">-</span>v 2<span class="token punctuation">&gt;</span><span class="token important">&amp;1</span> <span class="token punctuation">|</span> go<span class="token punctuation">-</span>junit<span class="token punctuation">-</span>report <span class="token punctuation">&gt;</span> report.xml
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">reports</span><span class="token punctuation">:</span>
+      <span class="token key atrule">junit</span><span class="token punctuation">:</span> report.xml
+<span class="token comment"># 如果GoogleTest需要运行在多个平台(如 x86 、 x64 、arm )，需要为每种平台设置唯一的报告名称，最后将结果汇总起来。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="dependencies"><a href="#dependencies" class="headerlink" title="dependencies"></a><strong>dependencies</strong></h4><ul>
+<li><p><code>dependencies</code> 依赖关键字应该与 <code>artifacts</code> 工件关键字联合使用，允许你在不同作业间传递工件。</p>
+</li>
+<li><p>默认情况下，会传递所有本作业之前阶段的所有工件。</p>
+</li>
+<li><p>需要在作业上下文中定义 <code>dependencies</code> 依赖关键字，并指出所有需要使用的前序工件的作业名称列表。 <strong>作业列表中不能使用该作业后的作业名称</strong> 。</p>
+</li>
+<li><p>定义空的依赖项，将下不会下载任何工件。</p>
+</li>
+<li><p>使用依赖项不会考虑前面作业的运行状态。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">build:osx</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> build
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> make build<span class="token punctuation">:</span>osx
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> binaries/
+
+<span class="token key atrule">build:linux</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> build
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> make build<span class="token punctuation">:</span>linux
+  <span class="token key atrule">artifacts</span><span class="token punctuation">:</span>
+    <span class="token key atrule">paths</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> binaries/
+
+<span class="token key atrule">test:osx</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> test
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> make test<span class="token punctuation">:</span>osx
+  <span class="token key atrule">dependencies</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> build<span class="token punctuation">:</span>osx
+
+<span class="token key atrule">test:linux</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> test
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> make test<span class="token punctuation">:</span>linux
+  <span class="token key atrule">dependencies</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> build<span class="token punctuation">:</span>linux
+
+<span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> deploy
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> make deploy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h4 id="coverage"><a href="#coverage" class="headerlink" title="coverage"></a><strong>coverage</strong></h4><ul>
+<li><p><code>coverage</code> 可以从作业的输出log中提取代码覆盖率。</p>
+</li>
+<li><p>仅支持正则表达式方式获取覆盖率。</p>
+</li>
+<li><p>字符串的前后必须使用/包含来表明一个正确的正则表达式规则。特殊字符串需要转义。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">job1</span><span class="token punctuation">:</span>
+  <span class="token key atrule">coverage</span><span class="token punctuation">:</span> <span class="token string">'/Code coverage:\d+\.\d+%/'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ul>
+<h4 id="retry"><a href="#retry" class="headerlink" title="retry"></a><strong>retry</strong></h4><ul>
+<li><p><code>retry</code> 重试关键字用于配置当作业失败时可以重新执行的次数。</p>
+</li>
+<li><p>当作业失败时，如果配置了 <code>retry</code> ，那么该作业就会重试，直到允许的最大次数。</p>
+</li>
+<li><p>如果 <code>retry</code> 设置值为2，如果第一次重试运行成功了，那么就不会进行第二次重试。</p>
+</li>
+<li><p><code>retry</code> 设置值只能是0、1、2三个整数。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">test</span><span class="token punctuation">:</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> rspec
+  <span class="token key atrule">retry</span><span class="token punctuation">:</span> <span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li><p>为了更好的控制重试次数，<code>retry</code> 可以设置以下两个关键字：</p>
+<ul>
+<li><code>max</code> : 最大重试次数</li>
+<li><code>when</code> : 何时重试</li>
+</ul>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 只有当运行器系统出现故障时才能最多重试两次</span>
+<span class="token key atrule">test</span><span class="token punctuation">:</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> rspec
+  <span class="token key atrule">retry</span><span class="token punctuation">:</span>
+    <span class="token key atrule">max</span><span class="token punctuation">:</span> <span class="token number">2</span>
+    <span class="token key atrule">when</span><span class="token punctuation">:</span> runner_system_failure
+<span class="token comment"># 为了针对多种重试情形，我们可以使用矩阵形式罗列出错误情形</span>
+<span class="token key atrule">test</span><span class="token punctuation">:</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span> rspec
+  <span class="token key atrule">retry</span><span class="token punctuation">:</span>
+    <span class="token key atrule">max</span><span class="token punctuation">:</span> <span class="token number">2</span>
+    <span class="token key atrule">when</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> runner_system_failure
+      <span class="token punctuation">-</span> stuck_or_timeout_failure<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>when的值：</strong></p>
+<ul>
+<li><code>always</code> : 一直重试，默认值。</li>
+<li><code>unknown_failure</code> ：当错误未知时重试。</li>
+<li><code>script_failure</code> ： 脚本错误时重试。</li>
+<li><code>api_failure</code> ： API调用错误时重试。</li>
+<li><code>stuck_or_timeout_failure</code> ： 作业卡信或超时错误时重试。</li>
+<li><code>runner_system_failure</code> ： 运行器系统错误(如设置工作失败)时重试。</li>
+<li><code>missing_dependency_failure</code> ： 依赖工件丢失错误时重试。</li>
+<li><code>runner_unsupported</code> ： 运行器不支持错误时重试。</li>
+</ul>
+</li>
+</ul>
+<h4 id="parallel"><a href="#parallel" class="headerlink" title="parallel"></a><strong>parallel</strong></h4><h4 id="include"><a href="#include" class="headerlink" title="include"></a>include</h4><p><code>include</code> 包含关键字可以将其他yaml文件载入到当前的 <code>.gitlab-ci.yml</code> 配置文件中</p>
+<h4 id="trigger"><a href="#trigger" class="headerlink" title="trigger"></a><strong>trigger</strong></h4><p><code>trigger</code> 关键字用于多项目流水线时，定义下游的流水线工程，由于社区版本不支持此功能，不详细介绍。</p>
+<h4 id="extends"><a href="#extends" class="headerlink" title="extends"></a><strong>extends</strong></h4><ul>
+<li><code>extends</code> 扩展用于定义当前作业从哪里继承。</li>
+<li>它是使用YAML锚点的替代方案，更加灵活、可读性强。</li>
+</ul>
+<h4 id="pages"><a href="#pages" class="headerlink" title="pages"></a>pages</h4><p><code>pages</code> 是一项特殊工作，用于将静态内容上传到GitLab，可用于为您的网站提供服务。</p>
+<h4 id="variables"><a href="#variables" class="headerlink" title="variables"></a><strong>variables</strong></h4><ul>
+<li><p>在 <code>.gitlab-ci.yml</code> 配置文件中可以通过 <code>variables</code> 关键字配置全局变量或者作业级的局部变量。</p>
+</li>
+<li><p>当 <code>variables</code> 关键字使用在作业层级时，它会覆盖全局变量或预定义变量。</p>
+</li>
+<li><p>可以在 <code>variables</code> 关键字中定义非敏感性配置。</p>
+</li>
+<li><p>全局变量可以在各个作业中作业，而作业级别的局部变量只能在该作业中使用。</p>
+</li>
+<li><p>可以在GitLab WEB界面定义一些敏感性配置变量，或者可能变动的变量。</p>
+</li>
+<li><p>在 <code>script</code> 中使用 <code>export</code> 可以导出当前可用的变量信息。</p>
+</li>
+<li><p>作业内部修改全局变量只对当前作用生效，不会影响其他作业。</p>
+</li>
+<li><p>可以使用赋值语句对全局变量或局部变量进行重新赋值。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">variables</span><span class="token punctuation">:</span>
+  <span class="token key atrule">DATABASE_URL</span><span class="token punctuation">:</span> <span class="token string">"postgres://postgres@postgres/my_database"</span>
+
+<span class="token key atrule">test1</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> test
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> echo <span class="token punctuation">-</span>e "$<span class="token punctuation">{</span>DATABASE_URL<span class="token punctuation">}</span>"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<blockquote>
+<p>变量的优先顺序是（从最高到最低）：</p>
+<p>触发变量或预定的流水线变量。<br>项目级别变量或受保护变量。<br>组级别变量或受保护变量。<br>YAML定义的作业级变量。<br>YAML定义的全局变量。<br>部署环境变量。<br>预定义的环境变量。</p>
+<ul>
+<li>不要将敏感信息，如用户密码、Token等信息放在 <code>.gitlab-ci.yml</code> 配置文件中定义变量。</li>
+<li>敏感信息可以WEB配置界面添加变量，并将变量设置为 <code>Protected受保护</code> 或者 <code>Masked</code> ，设置为 <code>Masked</code> 的变量不会直接显示在作业日志信息中。</li>
+</ul>
+</blockquote>
+<p><strong>关闭全局层级定义的变量</strong></p>
+<p>如果你要在作业层级关闭全局层级定义的变量，可以给 <code>variables</code> 关键字定义一个空的 <code>hash</code></p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">job_name</span><span class="token punctuation">:</span>
+  <span class="token key atrule">variables</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><strong>变量定义时使用其他变量</strong></p>
+<p>可以在变量定义时，使用其他的变量，需要使用 <code>$$</code> 进行转义。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">variables</span><span class="token punctuation">:</span>
+  <span class="token key atrule">LS_CMD</span><span class="token punctuation">:</span> <span class="token string">'ls $FLAGS $$TMP_DIR'</span>
+  <span class="token key atrule">FLAGS</span><span class="token punctuation">:</span> <span class="token string">'-al'</span>
+<span class="token key atrule">script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token string">'eval $LS_CMD'</span>  <span class="token comment"># will execute 'ls -al $TMP_DIR'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>克隆策略</strong></p>
+<ul>
+<li>你可以通过设置 <code>GIT_STRATEGY</code> 变量来指定GitLab Runner运行作业时使用什么样的方式来获取最新的代码，可以在全局级或作业级进行设置。</li>
+<li><code>GIT_STRATEGY</code> 变量可以设置为 <code>fetch</code> 、<code>clone</code> 、<code>none</code> 。</li>
+<li><code>clone</code> 是最慢的方式，这种方式会从头开始克隆仓库。</li>
+<li><code>fetch</code> 相对来说更快一点，如果本地项目空间中存在远程仓库的克隆，只用从远程获取最新到本地，而不用从头开始克隆整个仓库(如果本地项目空间不存在远程仓库的克隆的话，则此时等同于clone，从头开始克隆远程仓库)。</li>
+<li><code>none</code> 也是利用本地项目空间中的文件，但不会从远程获取到最新的修改数据，本地数据不是最新的。</li>
+</ul>
+<p><strong>子模块策略</strong></p>
+<ul>
+<li><code>GIT_SUBMODULE_STRATEGY</code> 类似于 <code>GIT_STRATEGY</code> ，当你的项目需要包含别的项目代码时，可以将别的项目作为你的项目的子模块，这个时候就可以使用 <code>GIT_SUBMODULE_STRATEGY</code> 。</li>
+<li><code>GIT_SUBMODULE_STRATEGY</code> 默认取值 <code>none</code> ，即拉取代码时，子模块不会被引入。</li>
+<li><code>GIT_SUBMODULE_STRATEGY</code> 可取值 <code>normal</code> ，意味着在只有顶级子模块会被引入。</li>
+<li><code>GIT_SUBMODULE_STRATEGY</code> 可取值 <code>recursive</code> ，递归的意思，意味着所有级子模块会被引入。</li>
+</ul>
+<p><strong>检出分支策略</strong></p>
+<ul>
+<li><p>当 <code>GIT_STRATEGY</code> 设置为 <code>fetch</code> 或者 <code>clone</code> 时，可以通过 <code>GIT_CHECKOUT</code> 变量设置是否需要做 <code>git checkout</code> 操作，如果未指定该参数，默认值为 <code>true</code> ，即需要做 <code>git checkout</code> 操作。</p>
+</li>
+<li><p>可以在全局级或作业级进行设置。</p>
+</li>
+<li><p>如果 <code>GIT_CHECKOUT</code> 变量设置为 <code>true</code> ，GitLab Runner都会将本地工作副本检出并切换到当前流水线相关的修订版本分支上。</p>
+</li>
+<li><p>如果 <code>GIT_CHECKOUT</code> 变量设置为 <code>false</code> ，那么运行器操作如下：</p>
+<ul>
+<li><p><code>fetch</code> 操作时，更新仓库并在当前版本上保留工作副本。</p>
+</li>
+<li><p><code>clone</code> 操作时，克隆仓库并在默认分支中保留工作副本。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>清理工作</strong></p>
+<ul>
+<li>可以使用 <code>GIT_CLEAN_FLAGS</code> 变量来控制在检出源码后 <code>git clean</code> 的默认行为，可以在全局级或作业级进行设置。</li>
+<li><code>GIT_CLEAN_FLAGS</code> 变量接受 <code>git clean</code> 命令的所有参数。</li>
+<li>如果指定了 <code>GIT_CHECKOUT: "false"</code> ，那么 <code>git clean</code> 将不可用。</li>
+<li><code>git-clean</code> : Remove untracked files from the working tree，即删除未跟踪的文件。</li>
+<li><code>git clean</code> 命令用来从你的工作目录中删除所有没有tracked过的文件， <code>git reset --hard</code> 用于删除跟踪文件的修改记录。</li>
+<li><code>git clean -n</code> 命令列出将被删除的文件。</li>
+<li><code>git clean -f</code> 命令删除当前目录下所有没有跟踪过的文件。</li>
+<li><code>git clean -d</code> 命令删除当前目录下所有没有跟踪过的目录。</li>
+<li><code>git clean -e &lt;pattern&gt;</code> 命令排除( <code>--exclude=&lt;pattern&gt;</code> ) 某文件或目录，即不删除模式匹配的文件。</li>
+<li><code>git clean -ffxd</code> 命令删除当前目录(包括由其他git仓库管理的子目录)下所有没有跟踪过的目录和文件。</li>
+<li><code>GIT_CLEAN_FLAGS</code> 变量未指定时， <code>git clean</code> 命令的参数是 <code>-ffxd</code> 。</li>
+<li><code>GIT_CLEAN_FLAGS</code> 变量指定为 <code>none</code> 时， <code>git clean</code> 命令不会执行。</li>
+</ul>
+<p><strong>作业重试次数</strong></p>
+<ul>
+<li>您可以设置正在运行的作业尝试执行以下每个阶段的尝试次数。可以在全局级或作业级进行设置。</li>
+<li>涉及三个变量 <code>GET_SOURCES_ATTEMPTS</code> 、 <code>ARTIFACT_DOWNLOAD_ATTEMPTS</code> 、 <code>RESTORE_CACHE_ATTEMPTS</code> 。</li>
+<li><code>GET_SOURCES_ATTEMPTS</code> 变量设置获取源码的尝试次数。</li>
+<li><code>ARTIFACT_DOWNLOAD_ATTEMPTS</code> 变量设置下载归档文件的尝试次数。</li>
+<li><code>RESTORE_CACHE_ATTEMPTS</code> 变量设置重建缓存的尝试次数。</li>
+<li>默认是1次尝试。</li>
+</ul>
+<p><strong>处理并发</strong></p>
+<ul>
+<li><p>当执行器配置并发数 <code>concurrent</code> 大于1时，有可能导致作业运行失败，因为有可能多个作业都运行在相同的目录上，GitLab Runner运行器并不会去阻止这种情形，管理员和开发人员必须遵守Runner配置的要求。</p>
+</li>
+<li><p>要避免这种情况，您可以在 <code>$CI_BUILDS_DIR</code> 中使用唯一路径，因为Runner公开了另外两个提供唯一并发ID的变量：</p>
+<ul>
+<li><code>$CI_CONCURRENT_ID</code> ：给定执行程序中运行的所有作业的唯一ID。</li>
+<li><code>$CI_CONCURRENT_PROJECT_ID</code> ：在给定执行程序和项目中运行的所有作业的唯一ID。</li>
+</ul>
+</li>
+<li><p>在任何场景和任何执行器中都应该运行良好的最稳定的配置是在 <code>GIT_CLONE_PATH</code> 中使用 <code>$CI_CONCURRENT_ID</code> 。</p>
+</li>
+</ul>
+<p><strong>特殊yaml功能</strong></p>
+<p>可以使用特殊的YAML功能，如锚点( <code>＆</code> )，别名( <code>*</code> )和合并( <code>&lt;&lt;</code> )，这将使您大大降低 <code>.gitlab-ci.yml</code> 的复杂性。</p>
+<ul>
+<li><p>隐藏关键字和作业</p>
+<p>如果我们想暂时禁用某个作业，我们可以将该作业的所有行都注释掉，更好的方法是，我们在作业名称前面增加一个点号( <code>.</code> )， 这样GitLab CI流水线就会自动处理忽略掉 <code>.hidden_job</code> 作业</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">hidden_job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> run test
+<span class="token key atrule">.hidden_job</span><span class="token punctuation">:</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> run test<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>锚点</p>
+<p>锚点可以让你容易复制文档内容，锚点可以用来复制或继承某些属性，锚点与隐藏作业一起使用可提供作业模板。</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">.job_template</span><span class="token punctuation">:</span> <span class="token important">&amp;job_definition</span>  <span class="token comment"># Hidden key that defines an anchor named 'job_definition'</span>
+  <span class="token key atrule">image</span><span class="token punctuation">:</span> ruby<span class="token punctuation">:</span><span class="token number">2.1</span>
+  <span class="token key atrule">services</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> postgres
+    <span class="token punctuation">-</span> redis
+
+<span class="token key atrule">test1</span><span class="token punctuation">:</span>
+  <span class="token key atrule">&lt;&lt;</span><span class="token punctuation">:</span> <span class="token important">*job_definition</span>           <span class="token comment"># Merge the contents of the 'job_definition' alias</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> test1 project
+
+<span class="token key atrule">test2</span><span class="token punctuation">:</span>
+  <span class="token key atrule">&lt;&lt;</span><span class="token punctuation">:</span> <span class="token important">*job_definition</span>           <span class="token comment"># Merge the contents of the 'job_definition' alias</span>
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> test2 project<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<ul>
+<li><code>&amp;</code> 用于设置锚点名称为 <code>job_definition</code> ，也就是给隐藏作业设置一个锚点 <code>job_definition</code> 。</li>
+<li><code>&lt;&lt;</code> 合并，将锚点定义的模板内容复制到当前作业的当前位置来。</li>
+<li><code>*</code> 包含锚点的名称 <code>job_definition</code>。</li>
+</ul>
+</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">ender viggin</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://blog.evcoder.com/2021/12/24/gitlab/gitlab-cicd/gitlabci/">https://blog.evcoder.com/2021/12/24/gitlab/gitlab-cicd/gitlabci/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">ender viggin</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/12/24/kustomize/kustomize-api/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-24
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            ender viggin
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/12/24/frontend/vue/vue/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            ender viggin
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">126k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
